@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 새 글은 첫 번째 item 위에 추가한다. 네이버 서치어드바이저에 RSS로 제출하는 파일. noindex 글(작성 중)은 넣지 않는다 -->
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ref(레프) | 콘텐츠·SEO 마케팅 지식창고</title>
+    <link>https://seoyeon1011.github.io/</link>
+    <description>콘텐츠·SEO 마케팅, Claude Code 자동화, 자격증 공부 기록을 정리하는 마케팅 지식창고</description>
+    <language>ko</language>
+    <lastBuildDate>Wed, 04 Nov 2026 09:00:00 +0900</lastBuildDate>
+    <atom:link href="https://seoyeon1011.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>SEO 콘텐츠 작성법: 상위 노출 글의 5가지 구조</title>
+      <link>https://seoyeon1011.github.io/posts/seo-content-writing-guide.html</link>
+      <guid>https://seoyeon1011.github.io/posts/seo-content-writing-guide.html</guid>
+      <description>SEO 콘텐츠 작성법을 다섯 단계로 정리했습니다. 검색 의도 유형을 나누는 법, 키워드를 제목 앞에 두는 이유, 문제 제기에서 실천 팁으로 이어지는 소제목 구조, 모바일에서 잘 읽히는 본문 작성 규칙, 클릭을 부르는 메타 설명 쓰는 법과 발행 전 체크리스트까지 담았습니다.</description>
+      <category>콘텐츠·SEO</category>
+      <pubDate>Wed, 04 Nov 2026 09:00:00 +0900</pubDate>
+    </item>
+    <item>
+      <title>Claude Code 마케팅 자동화: 비개발자 실습 기록</title>
+      <link>https://seoyeon1011.github.io/posts/claude-code-marketing-automation.html</link>
+      <guid>https://seoyeon1011.github.io/posts/claude-code-marketing-automation.html</guid>
+      <description>비개발자 마케터가 Claude Code 스킬 11개로 마케팅 업무를 자동화한 실습 기록입니다. 블로그 초안과 SNS 요약 연계, 콘텐츠 성과 분석, 리드 스코어링, 채널별 주간 성과 판정과 슬랙 전송까지 만든 과정과 AI 결과를 믿을 수 있게 만든 자체 검증 규칙을 정리했습니다.</description>
+      <category>자동화</category>
+      <pubDate>Wed, 04 Nov 2026 09:00:00 +0900</pubDate>
+    </item>
+  </channel>
+</rss>

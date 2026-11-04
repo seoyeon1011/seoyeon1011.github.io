@@ -8,7 +8,7 @@ Ref(레프) 콘텐츠·SEO 마케팅 지식창고 사이트. 빌드 도구 없�
 - 사이트 안의 파일명은 날짜를 붙이지 않는다. 파일명이 URL이므로 영문 소문자와 하이픈만 쓴다
 - 사용자의 경험, 수치, 점수, 기간, 교재명은 지어내지 않는다. 모르는 부분은 `<div class="todo">[직접 작성] ...</div>` 로 남긴다
 - 시험 기준, 일정처럼 바뀔 수 있는 외부 정보는 공식 출처 확인을 권하는 문장을 함께 쓴다
-- 사용자 이메일은 사이트에 노출하지 않는다. 연락처는 GitHub(`https://github.com/seoyeon1011`)만 쓴다
+- 연락처는 사용자가 직접 공개를 요청한 것만 쓴다 (about.html: 전화, 이메일 s.seoyeon1011@gmail.com, 인스타그램 @ref.yeon, GitHub). 그 밖의 개인정보는 넣지 않는다
 
 ## 글 작성과 SEO 기준
 
@@ -41,10 +41,13 @@ Ref(레프) 콘텐츠·SEO 마케팅 지식창고 사이트. 빌드 도구 없�
 
 ## 카테고리
 
-| 슬러그 | 표시 이름 |
-| --- | --- |
-| seo-content | 콘텐츠·SEO |
-| automation | 자동화 |
-| certificate | 자격증 |
+| 슬러그 | 표시 이름 | 메뉴 묶음 |
+| --- | --- | --- |
+| seo-content | 콘텐츠·SEO | 마케팅 보관함 |
+| automation | 자동화 | 마케팅 보관함 |
+| certificate | 자격증 | 포트폴리오 |
+| diary | 일기 | (단독 메뉴) |
 
-카테고리를 새로 만들면 모든 페이지의 헤더 메뉴, posts.html 필터 버튼, index.html 주제별 보기, sitemap.xml, `admin/index.html` 의 카테고리 선택, `admin/admin.js` 의 `CATS` 를 함께 고친다.
+헤더 메뉴 순서: 전체 글 / 마케팅 보관함(콘텐츠·SEO, 자동화) / 포트폴리오(자격증, 소개) / 일기. 묶음은 `li.has-sub` 안의 `button.sub-toggle` 과 `ul.sub` 로 만든다.
+
+카테고리를 새로 만들면 모든 페이지의 헤더 메뉴, `_templates/post-template.html` 메뉴, `category/슬러그.html`, posts.html 필터 버튼, index.html 주제별 보기(`data-count`), sitemap.xml, `admin/index.html` 의 분류 선택, `admin/admin.js` 의 `CATS` 와 `navHtml` 을 함께 고친다.

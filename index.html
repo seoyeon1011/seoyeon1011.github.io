@@ -44,10 +44,21 @@
       <nav class="nav" id="site-nav" aria-label="주요 메뉴">
         <ul>
           <li><a href="posts.html">전체 글</a></li>
-          <li><a href="category/seo-content.html">콘텐츠·SEO</a></li>
-          <li><a href="category/automation.html">자동화</a></li>
-          <li><a href="category/certificate.html">자격증</a></li>
-          <li><a href="about.html">소개</a></li>
+          <li class="has-sub">
+            <button type="button" class="sub-toggle" aria-expanded="false">마케팅 보관함</button>
+            <ul class="sub">
+              <li><a href="category/seo-content.html">콘텐츠·SEO</a></li>
+              <li><a href="category/automation.html">자동화</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <button type="button" class="sub-toggle" aria-expanded="false">포트폴리오</button>
+            <ul class="sub">
+              <li><a href="category/certificate.html">자격증</a></li>
+              <li><a href="about.html">소개</a></li>
+            </ul>
+          </li>
+          <li><a href="category/diary.html">일기</a></li>
         </ul>
       </nav>
     </div>
@@ -87,6 +98,12 @@
             <h3><a href="category/certificate.html">자격증·공부 기록</a></h3>
             <p>ADsP 독학 후기처럼 마케터에게 필요한 자격증과 공부 과정 정리</p>
             <span class="count" data-count="certificate">글 1개</span>
+          </article>
+          <article class="card cat-card">
+            <span class="tag">일기</span>
+            <h3><a href="category/diary.html">일기</a></h3>
+            <p>공부하고 일하며 느낀 것들을 편하게 남기는 기록</p>
+            <span class="count" data-count="diary">글 0개</span>
           </article>
         </div>
       </div>

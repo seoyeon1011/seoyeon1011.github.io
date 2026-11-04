@@ -40,10 +40,21 @@
       <nav class="nav" id="site-nav" aria-label="주요 메뉴">
         <ul>
           <li><a href="posts.html">전체 글</a></li>
-          <li><a href="category/seo-content.html">콘텐츠·SEO</a></li>
-          <li><a href="category/automation.html">자동화</a></li>
-          <li><a href="category/certificate.html">자격증</a></li>
-          <li><a href="about.html" aria-current="page">소개</a></li>
+          <li class="has-sub">
+            <button type="button" class="sub-toggle" aria-expanded="false">마케팅 보관함</button>
+            <ul class="sub">
+              <li><a href="category/seo-content.html">콘텐츠·SEO</a></li>
+              <li><a href="category/automation.html">자동화</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <button type="button" class="sub-toggle" aria-expanded="false">포트폴리오</button>
+            <ul class="sub">
+              <li><a href="category/certificate.html">자격증</a></li>
+              <li><a href="about.html" aria-current="page">소개</a></li>
+            </ul>
+          </li>
+          <li><a href="category/diary.html">일기</a></li>
         </ul>
       </nav>
     </div>

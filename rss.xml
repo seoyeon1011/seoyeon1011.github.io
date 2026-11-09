@@ -6,8 +6,16 @@
     <link>https://seoyeon1011.github.io/</link>
     <description>콘텐츠·SEO 마케팅, Claude Code 자동화, 자격증 공부 기록을 정리하는 마케팅 지식창고</description>
     <language>ko</language>
-    <lastBuildDate>Wed, 04 Nov 2026 09:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 09 Nov 2026 09:00:00 +0900</lastBuildDate>
     <atom:link href="https://seoyeon1011.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>AIDA 모델로 콘텐츠 흐름 잡기</title>
+      <link>https://seoyeon1011.github.io/posts/aida-model-content-flow.html</link>
+      <guid>https://seoyeon1011.github.io/posts/aida-model-content-flow.html</guid>
+      <description>AIDA 모델은 주목, 흥미, 욕구, 행동의 네 단계로 독자의 마음이 움직이는 순서를 정리한 마케팅 공식이에요. 카드뉴스 7장 구성과 상세페이지 기획에 AIDA 모델을 대입하는 방법, 마지막 행동 단계에서 자주 하는 실수와 발행 전 체크리스트까지 한 번에 정리했어요.</description>
+      <category>마케팅 전략</category>
+      <pubDate>Mon, 09 Nov 2026 09:00:00 +0900</pubDate>
+    </item>
     <item>
       <title>SEO 콘텐츠 작성법: 상위 노출 글의 5가지 구조</title>
       <link>https://seoyeon1011.github.io/posts/seo-content-writing-guide.html</link>

@@ -26,6 +26,8 @@ Ref(레프) 콘텐츠·SEO 마케팅 지식창고 사이트. 빌드 도구 없�
 1. 관리자 화면 `/admin/`: 사용자가 브라우저에서 직접 쓰고 GitHub 토큰으로 게시한다. 게시하면 `posts/슬러그.html`, `_source/슬러그.json`(다시 불러오기용 원본), 이미지, 목록, 사이트맵, RSS가 한 커밋으로 갱신된다
 2. Claude Code: 레프글작성 스킬 절차로 로컬 파일을 만들고, 사용자가 GitHub에 올린다
 
+글 페이지의 "수정" 버튼은 `assets/js/main.js` 가 `.post-meta` 끝에 붙인다. 관리자 화면에 로그인하면 localStorage에 `ref_admin=1` 표시가 생기고(토큰은 저장하지 않음), 그 브라우저에서만 버튼이 보인다. 버튼은 `/admin/?edit=슬러그` 로 이동해 `_source/슬러그.json` 을 자동으로 불러온다. 버튼 노출은 편의 기능일 뿐이고 실제 권한은 토큰이 막는다.
+
 `_source/슬러그.json` 이 있는 글은 관리자 화면이 원본이다. 파일을 직접 고치면 다음 관리자 수정 때 덮어써지므로 JSON도 같이 고친다.
 
 ## 자동 삽입 위치 표시 (지우지 말 것)
@@ -43,11 +45,15 @@ Ref(레프) 콘텐츠·SEO 마케팅 지식창고 사이트. 빌드 도구 없�
 
 | 슬러그 | 표시 이름 | 메뉴 묶음 |
 | --- | --- | --- |
-| seo-content | 콘텐츠·SEO | 마케팅 보관함 |
-| automation | 자동화 | 마케팅 보관함 |
+| seo-content | 콘텐츠·SEO | 마케팅 지식 |
+| marketing | 마케팅 전략 | 마케팅 지식 |
+| project | 프로젝트 | 포트폴리오 |
+| automation | 자동화 실습 | 포트폴리오 |
 | certificate | 자격증 | 포트폴리오 |
 | diary | 일기 | (단독 메뉴) |
 
-헤더 메뉴 순서: 전체 글 / 마케팅 보관함(콘텐츠·SEO, 자동화) / 포트폴리오(자격증, 소개) / 일기. 묶음은 `li.has-sub` 안의 `button.sub-toggle` 과 `ul.sub` 로 만든다.
+묶음 기준: 마케팅 지식은 내 경험과 무관하게 읽히는 정보성 글, 포트폴리오는 내가 직접 한 작업 기록(프로젝트, 실습, 자격증)이다. 새 글의 분류는 이 기준으로 정한다.
+
+헤더 메뉴 순서: 전체 글 / 마케팅 지식(콘텐츠·SEO, 마케팅 전략) / 포트폴리오(프로젝트, 자동화 실습, 자격증, 소개) / 일기. 묶음은 `li.has-sub` 안의 `button.sub-toggle` 과 `ul.sub` 로 만든다.
 
 카테고리를 새로 만들면 모든 페이지의 헤더 메뉴, `_templates/post-template.html` 메뉴, `category/슬러그.html`, posts.html 필터 버튼, index.html 주제별 보기(`data-count`), sitemap.xml, `admin/index.html` 의 분류 선택, `admin/admin.js` 의 `CATS` 와 `navHtml` 을 함께 고친다.

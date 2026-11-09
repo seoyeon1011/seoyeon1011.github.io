@@ -28,15 +28,17 @@
         <ul>
           <li><a href="posts.html" aria-current="page">전체 글</a></li>
           <li class="has-sub">
-            <button type="button" class="sub-toggle" aria-expanded="false">마케팅 보관함</button>
+            <button type="button" class="sub-toggle" aria-expanded="false">마케팅 지식</button>
             <ul class="sub">
               <li><a href="category/seo-content.html">콘텐츠·SEO</a></li>
-              <li><a href="category/automation.html">자동화</a></li>
+              <li><a href="category/marketing.html">마케팅 전략</a></li>
             </ul>
           </li>
           <li class="has-sub">
             <button type="button" class="sub-toggle" aria-expanded="false">포트폴리오</button>
             <ul class="sub">
+              <li><a href="category/project.html">프로젝트</a></li>
+              <li><a href="category/automation.html">자동화 실습</a></li>
               <li><a href="category/certificate.html">자격증</a></li>
               <li><a href="about.html">소개</a></li>
             </ul>
@@ -57,13 +59,21 @@
       <input type="search" data-search placeholder="예: SEO, ADsP, 자동화" aria-label="글 검색">
       <button type="button" data-filter="all" aria-pressed="true">전체</button>
       <button type="button" data-filter="seo-content">콘텐츠·SEO</button>
-      <button type="button" data-filter="automation">자동화</button>
+      <button type="button" data-filter="marketing">마케팅 전략</button>
+      <button type="button" data-filter="project">프로젝트</button>
+      <button type="button" data-filter="automation">자동화 실습</button>
       <button type="button" data-filter="certificate">자격증</button>
       <button type="button" data-filter="diary">일기</button>
     </div>
 
     <!-- 새 글은 이 목록 맨 위에 카드 하나를 추가한다. data-cat은 카테고리 슬러그 -->
     <div class="grid" data-post-list>
+      <article class="card" data-cat="marketing" data-keywords="마케팅 문제 정의 3C SWOT STP 4P 리프레이밍 IMC 유입 전환 재구매 기업 연계 프로젝트">
+        <span class="tag">마케팅 전략</span>
+        <h3><a href="posts/marketing-problem-definition.html">마케팅 문제 정의 4단계: 고민을 진짜 문제로 바꾸는 법</a></h3>
+        <p>대표님의 고민을 유입·전환·재구매 문제로 나누고 3C·SWOT·STP·4P와 리프레이밍으로 구조적 원인을 찾는 방법을 정리했습니다.</p>
+        <span class="meta"><time datetime="2026-11-08">2026.11.08</time></span>
+      </article>
       <article class="card" data-cat="seo-content" data-keywords="SEO 콘텐츠 작성법 검색의도 키워드 메타설명 블로그">
         <span class="tag">콘텐츠·SEO</span>
         <h3><a href="posts/seo-content-writing-guide.html">SEO 콘텐츠 작성법: 상위 노출 글의 5가지 구조</a></h3>
@@ -71,7 +81,7 @@
         <span class="meta"><time datetime="2026-11-04">2026.11.04</time></span>
       </article>
       <article class="card" data-cat="automation" data-keywords="Claude Code 클로드 코드 마케팅 자동화 스킬 비개발자 AI">
-        <span class="tag">자동화</span>
+        <span class="tag">자동화 실습</span>
         <h3><a href="posts/claude-code-marketing-automation.html">Claude Code 마케팅 자동화: 비개발자 실습 기록</a></h3>
         <p>코딩 없이 Claude Code 스킬 11개로 블로그 작성, 성과 분석, 주간 보고를 자동화한 과정을 정리했습니다.</p>
         <span class="meta"><time datetime="2026-11-04">2026.11.04</time></span>

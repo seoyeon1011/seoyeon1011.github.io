@@ -5,7 +5,8 @@
   'use strict';
 
   var CFG = { owner: 'seoyeon1011', repo: 'seoyeon1011.github.io', site: 'https://seoyeon1011.github.io' };
-  var CATS = { 'seo-content': '콘텐츠·SEO', 'automation': '자동화', 'certificate': '자격증' };
+  // 분류(카테고리). 메뉴 묶음: 마케팅 지식(seo-content, marketing), 포트폴리오(project, automation, certificate + 소개), 일기(diary)
+  var CATS = { 'seo-content': '콘텐츠·SEO', 'marketing': '마케팅 전략', 'project': '프로젝트', 'automation': '자동화 실습', 'certificate': '자격증', 'diary': '일기' };
   var RULE = { titleMin: 10, titleMax: 15, descMin: 120, descMax: 200, bodyMin: 2000, imgMin: 5, h2Min: 4, kwMin: 3, recentMax: 6 };
 
   var $ = function (s) { return document.querySelector(s); };
@@ -396,14 +397,27 @@
   // ---------- HTML 생성 ----------
   function navHtml(cat) {
     function a(href, label, on) { return '<li><a href="' + href + '"' + (on ? ' aria-current="page"' : '') + '>' + label + '</a></li>'; }
-    return '  <header class="site-header">\n    <div class="wrap">\n      <a class="logo" href="../">Ref<span>.</span></a>\n' +
+    function group(label, items) {
+      return '          <li class="has-sub">\n' +
+        '            <button type="button" class="sub-toggle" aria-expanded="false">' + label + '</button>\n' +
+        '            <ul class="sub">\n' + items.map(function (x) { return '              ' + x + '\n'; }).join('') +
+        '            </ul>\n          </li>\n';
+    }
+    return '  <header class="site-header">\n    <div class="wrap">\n      <a class="logo" href="../index.html">Ref<span>.</span></a>\n' +
       '      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">메뉴</button>\n' +
       '      <nav class="nav" id="site-nav" aria-label="주요 메뉴">\n        <ul>\n' +
       '          ' + a('../posts.html', '전체 글') + '\n' +
-      '          ' + a('../category/seo-content.html', '콘텐츠·SEO', cat === 'seo-content') + '\n' +
-      '          ' + a('../category/automation.html', '자동화', cat === 'automation') + '\n' +
-      '          ' + a('../category/certificate.html', '자격증', cat === 'certificate') + '\n' +
-      '          ' + a('../about.html', '소개') + '\n' +
+      group('마케팅 지식', [
+        a('../category/seo-content.html', '콘텐츠·SEO', cat === 'seo-content'),
+        a('../category/marketing.html', '마케팅 전략', cat === 'marketing')
+      ]) +
+      group('포트폴리오', [
+        a('../category/project.html', '프로젝트', cat === 'project'),
+        a('../category/automation.html', '자동화 실습', cat === 'automation'),
+        a('../category/certificate.html', '자격증', cat === 'certificate'),
+        a('../about.html', '소개')
+      ]) +
+      '          ' + a('../category/diary.html', '일기', cat === 'diary') + '\n' +
       '        </ul>\n      </nav>\n    </div>\n  </header>';
   }
   function articleHtml(s, mode, related) {
@@ -415,7 +429,7 @@
     var faqs = s.faqs.filter(function (f) { return f.q.trim() && f.a.trim(); });
     var h = '';
     h += '    <article class="read">\n      <header class="page-head">\n';
-    h += '        <nav class="breadcrumb" aria-label="현재 위치"><ol><li><a href="../">홈</a></li><li><a href="../category/' + s.category + '.html">' + CATS[s.category] + '</a></li><li>' + esc(s.seoTitle.trim() || h1) + '</li></ol></nav>\n';
+    h += '        <nav class="breadcrumb" aria-label="현재 위치"><ol><li><a href="../index.html">홈</a></li><li><a href="../category/' + s.category + '.html">' + CATS[s.category] + '</a></li><li>' + esc(s.seoTitle.trim() || h1) + '</li></ol></nav>\n';
     h += '        <span class="tag">' + CATS[s.category] + '</span>\n';
     h += '        <h1>' + esc(h1) + '</h1>\n';
     h += '        <div class="post-meta">\n          <span>레프(Ref)</span>\n          <time datetime="' + date + '">' + dot(date) + ' 작성</time>\n';
@@ -550,9 +564,12 @@
       }
       var isNew = !existing;
       if (!s.pubDate) s.pubDate = today();
-      var files = await Promise.all(['posts.html', 'index.html', 'sitemap.xml', 'rss.xml', 'category/seo-content.html', 'category/automation.html', 'category/certificate.html'].map(getFile));
+      var catKeys = Object.keys(CATS);
+      var files = await Promise.all(['posts.html', 'index.html', 'sitemap.xml', 'rss.xml'].concat(catKeys.map(function (k) { return 'category/' + k + '.html'; })).map(getFile));
       var postsHtml = files[0], indexHtml = files[1], sitemap = files[2], rss = files[3];
-      var catHtml = { 'seo-content': files[4], 'automation': files[5], 'certificate': files[6] };
+      var catHtml = {};
+      catKeys.forEach(function (k, i) { catHtml[k] = files[4 + i]; });
+      if (!catHtml[s.category]) throw new Error('category/' + s.category + '.html 을 저장소에서 찾지 못했습니다. 분류 페이지를 먼저 GitHub에 올렸는지 확인하세요.');
       if (!postsHtml || !indexHtml || !sitemap || !rss) throw new Error('사이트 기본 파일을 찾지 못했습니다. 저장소에 사이트 파일을 먼저 올렸는지 확인하세요.');
 
       // 이미지 경로 확정 (본문에 넣은 이미지만 올린다)
@@ -679,6 +696,27 @@
     fillForm();
   }
 
+  // 글 페이지의 "수정" 버튼으로 들어온 경우: /admin/?edit=슬러그
+  var editSlug = new URLSearchParams(location.search).get('edit');
+  if (editSlug && !/^[a-z0-9-]+$/.test(editSlug)) editSlug = null;
+
+  async function loadForEdit(slug) {
+    try {
+      var txt = await getFile('_source/' + slug + '.json');
+      if (!txt) {
+        fillForm();
+        alert('"' + slug + '" 글은 관리자 화면 밖에서 만든 글이라 여기서 불러올 수 없습니다. Claude Code로 수정하세요.');
+        return;
+      }
+      applyLoaded(JSON.parse(txt));
+    } catch (err) { fillForm(); alert('불러오기 실패: ' + err.message); }
+  }
+
+  // 글 페이지에서 수정 버튼을 보여 줄지 정하는 표시. 토큰이 아니라 표시값만 저장한다
+  function setAdminFlag(on) {
+    try { if (on) localStorage.setItem('ref_admin', '1'); else localStorage.removeItem('ref_admin'); } catch (e) {}
+  }
+
   // ---------- 로그인 ----------
   async function connect() {
     var input = $('#token').value.trim();
@@ -697,14 +735,22 @@
       $('#editor-view').hidden = false;
       $('#who').hidden = false;
       $('#repo-label').textContent = CFG.owner + '/' + CFG.repo;
+      setAdminFlag(true);
       var auto = await getDraft('자동저장').catch(function () { return null; });
-      if (auto && (auto.body || auto.seoTitle) && confirm('자동저장된 글이 있습니다 (' + (auto.savedAt || '') + '). 불러올까요?')) applyLoaded(auto);
+      var hasAuto = auto && (auto.body || auto.seoTitle);
+      if (editSlug) {
+        history.replaceState(null, '', location.pathname);
+        if (hasAuto && !confirm('자동저장된 작성 중인 글이 있습니다 (' + (auto.savedAt || '') + ').\n이 내용을 버리고 "' + editSlug + '" 글을 불러올까요?\n(취소하면 자동저장된 글을 엽니다)')) applyLoaded(auto);
+        else await loadForEdit(editSlug);
+        editSlug = null;
+      } else if (hasAuto && confirm('자동저장된 글이 있습니다 (' + (auto.savedAt || '') + '). 불러올까요?')) applyLoaded(auto);
       else fillForm();
       loadDraftList();
       loadPublishedList();
     } catch (e) {
       $('#login-msg').textContent = e.status === 401 ? '토큰이 올바르지 않거나 만료됐습니다.' : (e.status === 404 ? '저장소 ' + CFG.repo + '를 찾지 못했습니다. 토큰의 저장소 접근 범위를 확인하세요.' : e.message);
       if (!input) { token = ''; }
+      if (e.status === 401) setAdminFlag(false);
     }
   }
 
@@ -712,7 +758,7 @@
   $('#connect').addEventListener('click', connect);
   $('#token').addEventListener('keydown', function (e) { if (e.key === 'Enter') connect(); });
   $('#logout').addEventListener('click', function () {
-    sessionStorage.removeItem('ref_token'); localStorage.removeItem('ref_token'); location.reload();
+    sessionStorage.removeItem('ref_token'); localStorage.removeItem('ref_token'); setAdminFlag(false); location.reload();
   });
   document.addEventListener('input', onField);
   document.addEventListener('change', function (e) {

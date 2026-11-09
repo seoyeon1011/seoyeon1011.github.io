@@ -8,7 +8,7 @@
 | --- | --- |
 | index.html | 홈 (소개 문구, 주제별 보기, 최근 글) |
 | posts.html | 전체 글 목록 (검색, 카테고리 필터) |
-| category/ | 카테고리 허브 페이지 3개 (seo-content, automation, certificate) |
+| category/ | 카테고리 허브 페이지 6개 (마케팅 지식: seo-content, marketing / 포트폴리오: project, automation, certificate / diary) |
 | posts/ | 글 본문. 파일명이 곧 URL |
 | about.html | 소개, 포트폴리오 (역량, 프로젝트, 자격증, 연락처) |
 | 404.html | 없는 주소로 들어왔을 때 보이는 페이지 |

@@ -13,7 +13,7 @@
 <body class="admin">
   <header class="site-header">
     <div class="wrap admin-wrap">
-      <a class="logo" href="../">Ref<span>.</span> <small>글쓰기</small></a>
+      <a class="logo" href="../index.html">Ref<span>.</span> <small>글쓰기</small></a>
       <div class="admin-top" id="who" hidden>
         <span id="repo-label"></span>
         <button type="button" class="abtn" id="logout">로그아웃</button>
@@ -58,11 +58,20 @@
     <div class="admin-grid">
       <section class="panel form">
         <div class="row2">
-          <label>카테고리
+          <label>분류
             <select data-field="category">
-              <option value="seo-content">콘텐츠·SEO</option>
-              <option value="automation">자동화</option>
-              <option value="certificate">자격증</option>
+              <optgroup label="마케팅 지식">
+                <option value="seo-content">콘텐츠·SEO</option>
+                <option value="marketing">마케팅 전략</option>
+              </optgroup>
+              <optgroup label="포트폴리오">
+                <option value="project">프로젝트</option>
+                <option value="automation">자동화 실습</option>
+                <option value="certificate">자격증</option>
+              </optgroup>
+              <optgroup label="일기">
+                <option value="diary">일기</option>
+              </optgroup>
             </select>
           </label>
           <label>타깃 키워드

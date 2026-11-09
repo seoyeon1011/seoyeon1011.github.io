@@ -10,6 +10,27 @@
     });
   }
 
+  // 메뉴 묶음: 클릭(터치)으로 열고 닫기. 마우스를 올리거나 키보드로 들어가도 열린다(CSS)
+  var groups = document.querySelectorAll('.nav .has-sub');
+  function closeGroups(except) {
+    groups.forEach(function (g) {
+      if (g === except) return;
+      g.classList.remove('open');
+      g.querySelector('.sub-toggle').setAttribute('aria-expanded', 'false');
+    });
+  }
+  groups.forEach(function (g) {
+    var btn = g.querySelector('.sub-toggle');
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = g.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      closeGroups(g);
+    });
+  });
+  document.addEventListener('click', function () { closeGroups(null); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeGroups(null); });
+
   // 목차: 본문 h2에 id가 있으면 자동 생성
   var toc = document.querySelector('[data-toc]');
   var heads = document.querySelectorAll('.prose h2[id]');
@@ -25,6 +46,21 @@
     });
     toc.appendChild(ol);
     toc.hidden = false;
+  }
+
+  // 글 수정 버튼: 이 브라우저에서 관리자 화면(/admin/)에 로그인한 적이 있을 때만 보인다.
+  // 버튼이 보여도 실제 수정·게시는 GitHub 토큰이 있어야 가능하다.
+  var isAdmin = false;
+  try { isAdmin = localStorage.getItem('ref_admin') === '1'; } catch (e) {}
+  var slugMatch = location.pathname.match(/\/posts\/([a-z0-9-]+)\.html$/);
+  var meta = document.querySelector('.post-meta');
+  if (isAdmin && slugMatch && meta) {
+    var edit = document.createElement('a');
+    edit.className = 'edit-link';
+    edit.href = '/admin/?edit=' + slugMatch[1];
+    edit.textContent = '수정';
+    edit.rel = 'nofollow';
+    meta.appendChild(edit);
   }
 
   // 전체 글 페이지: 검색 + 카테고리 필터

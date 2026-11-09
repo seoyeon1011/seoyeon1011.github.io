@@ -22,7 +22,7 @@
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://seoyeon1011.github.io/" },
-      { "@type": "ListItem", "position": 2, "name": "자동화", "item": "https://seoyeon1011.github.io/category/automation.html" }
+      { "@type": "ListItem", "position": 2, "name": "자동화 실습", "item": "https://seoyeon1011.github.io/category/automation.html" }
     ]
   }
   </script>
@@ -31,15 +31,28 @@
   <a class="skip-link" href="#main">본문 바로가기</a>
   <header class="site-header">
     <div class="wrap">
-      <a class="logo" href="../">Ref<span>.</span></a>
+      <a class="logo" href="../index.html">Ref<span>.</span></a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">메뉴</button>
       <nav class="nav" id="site-nav" aria-label="주요 메뉴">
         <ul>
           <li><a href="../posts.html">전체 글</a></li>
-          <li><a href="seo-content.html">콘텐츠·SEO</a></li>
-          <li><a href="automation.html" aria-current="page">자동화</a></li>
-          <li><a href="certificate.html">자격증</a></li>
-          <li><a href="../about.html">소개</a></li>
+          <li class="has-sub">
+            <button type="button" class="sub-toggle" aria-expanded="false">마케팅 지식</button>
+            <ul class="sub">
+              <li><a href="../category/seo-content.html">콘텐츠·SEO</a></li>
+              <li><a href="../category/marketing.html">마케팅 전략</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <button type="button" class="sub-toggle" aria-expanded="false">포트폴리오</button>
+            <ul class="sub">
+              <li><a href="../category/project.html">프로젝트</a></li>
+              <li><a href="../category/automation.html" aria-current="page">자동화 실습</a></li>
+              <li><a href="../category/certificate.html">자격증</a></li>
+              <li><a href="../about.html">소개</a></li>
+            </ul>
+          </li>
+          <li><a href="../category/diary.html">일기</a></li>
         </ul>
       </nav>
     </div>
@@ -47,14 +60,14 @@
 
   <main id="main" class="wrap">
     <div class="page-head">
-      <nav class="breadcrumb" aria-label="현재 위치"><ol><li><a href="../">홈</a></li><li>자동화</li></ol></nav>
+      <nav class="breadcrumb" aria-label="현재 위치"><ol><li><a href="../index.html">홈</a></li><li>자동화 실습</li></ol></nav>
       <h1>Claude Code 마케팅 자동화</h1>
       <p>코딩을 몰라도 업무 절차를 글로 정리하면 반복 업무를 자동화할 수 있습니다. 콘텐츠 제작, 성과 분석, 주간 보고, 사내 문의 응대처럼 마케팅팀 업무를 Claude Code 스킬로 만든 과정과 시행착오를 기록합니다.</p>
     </div>
 
     <div class="grid" data-cat-list>
       <article class="card">
-        <span class="tag">자동화</span>
+        <span class="tag">자동화 실습</span>
         <h3><a href="../posts/claude-code-marketing-automation.html">Claude Code 마케팅 자동화: 비개발자 실습 기록</a></h3>
         <p>코딩 없이 Claude Code 스킬 11개로 블로그 작성, 성과 분석, 주간 보고를 자동화한 과정을 정리했습니다.</p>
         <span class="meta"><time datetime="2026-11-04">2026.11.04</time></span>

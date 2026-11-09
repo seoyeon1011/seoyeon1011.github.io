@@ -41,7 +41,7 @@
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://seoyeon1011.github.io/" },
-        { "@type": "ListItem", "position": 2, "name": "자동화", "item": "https://seoyeon1011.github.io/category/automation.html" },
+        { "@type": "ListItem", "position": 2, "name": "자동화 실습", "item": "https://seoyeon1011.github.io/category/automation.html" },
         { "@type": "ListItem", "position": 3, "name": "Claude Code 마케팅 자동화" }
       ]
     },
@@ -60,15 +60,28 @@
   <a class="skip-link" href="#main">본문 바로가기</a>
   <header class="site-header">
     <div class="wrap">
-      <a class="logo" href="../">Ref<span>.</span></a>
+      <a class="logo" href="../index.html">Ref<span>.</span></a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">메뉴</button>
       <nav class="nav" id="site-nav" aria-label="주요 메뉴">
         <ul>
           <li><a href="../posts.html">전체 글</a></li>
-          <li><a href="../category/seo-content.html">콘텐츠·SEO</a></li>
-          <li><a href="../category/automation.html" aria-current="page">자동화</a></li>
-          <li><a href="../category/certificate.html">자격증</a></li>
-          <li><a href="../about.html">소개</a></li>
+          <li class="has-sub">
+            <button type="button" class="sub-toggle" aria-expanded="false">마케팅 지식</button>
+            <ul class="sub">
+              <li><a href="../category/seo-content.html">콘텐츠·SEO</a></li>
+              <li><a href="../category/marketing.html">마케팅 전략</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <button type="button" class="sub-toggle" aria-expanded="false">포트폴리오</button>
+            <ul class="sub">
+              <li><a href="../category/project.html">프로젝트</a></li>
+              <li><a href="../category/automation.html" aria-current="page">자동화 실습</a></li>
+              <li><a href="../category/certificate.html">자격증</a></li>
+              <li><a href="../about.html">소개</a></li>
+            </ul>
+          </li>
+          <li><a href="../category/diary.html">일기</a></li>
         </ul>
       </nav>
     </div>
@@ -77,8 +90,8 @@
   <main id="main" class="wrap">
     <article class="read">
       <header class="page-head">
-        <nav class="breadcrumb" aria-label="현재 위치"><ol><li><a href="../">홈</a></li><li><a href="../category/automation.html">자동화</a></li><li>Claude Code 마케팅 자동화</li></ol></nav>
-        <span class="tag">자동화</span>
+        <nav class="breadcrumb" aria-label="현재 위치"><ol><li><a href="../index.html">홈</a></li><li><a href="../category/automation.html">자동화 실습</a></li><li>Claude Code 마케팅 자동화</li></ol></nav>
+        <span class="tag">자동화 실습</span>
         <h1>Claude Code 마케팅 자동화: 비개발자 실습 기록</h1>
         <div class="post-meta">
           <span>레프(Ref)</span>
@@ -189,6 +202,10 @@
           <article class="card">
             <span class="tag">자격증</span>
             <h3><a href="adsp-self-study-review.html">ADsP 비전공자 독학 후기: 기간·교재·공부법</a></h3>
+          </article>
+          <article class="card">
+            <span class="tag">마케팅 전략</span>
+            <h3><a href="marketing-problem-definition.html">마케팅 문제 정의 4단계: 고민을 진짜 문제로 바꾸는 법</a></h3>
           </article>
         </div>
       </section>

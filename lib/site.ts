@@ -11,7 +11,7 @@ export const SITE = {
   description: '콘텐츠·SEO 마케팅, Claude Code 업무 자동화, ADsP 같은 자격증 공부 기록을 정리하는 레프의 마케팅 지식창고입니다.',
   shortDescription: '콘텐츠·SEO 마케팅, Claude Code 자동화, 자격증 공부 기록을 정리하는 마케팅 지식창고',
   ogImage: '/assets/img/og-default.png',
-  googleVerification: 'V6SVuCBFGDz9txrp48CF7EOFhjnhhBLoXwOUGoaZjLY',
+  googleVerification: 'gdfrXvGJt6Y3JZp6kloC7pqOFYaGpDImhtGKEk3gXN4',
   // 관리자 화면이 글을 커밋하는 저장소
   owner: 'seoyeon1011',
   repo: 'seoyeon1011.github.io',

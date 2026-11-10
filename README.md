@@ -80,7 +80,7 @@ Next.js로 만든 정적 사이트입니다. 글은 `content/posts/` 의 JSON �
 
 ## 검색엔진 등록
 
-1. 구글 서치콘솔: 새 주소로 속성을 추가하고, 받은 소유 확인 코드를 `lib/site.ts` 의 `googleVerification` 에 넣습니다 (지금 값은 예전 github.io 주소용). Sitemaps 메뉴에 `sitemap.xml` 제출
+1. 구글 서치콘솔: 새 주소로 속성을 추가하고, 받은 소유 확인 코드를 `lib/site.ts` 의 `googleVerification` 에 넣습니다 (marketing-ref.vercel.app 용 코드 반영 완료, 2026-11-11). Sitemaps 메뉴에 `sitemap.xml` 제출
 2. 네이버 서치어드바이저: HTML 태그 방식으로 소유 확인이 필요하면 `app/layout.tsx` 의 `verification` 에 `other: { 'naver-site-verification': '값' }` 을 추가합니다. 사이트맵 `https://marketing-ref.vercel.app/sitemap.xml`, RSS `https://marketing-ref.vercel.app/rss.xml` 제출
 3. GA4가 필요하면 측정 ID(G-XXXX)를 발급받아 Claude Code에 "GA4 G-XXXX 넣어줘"라고 요청
 

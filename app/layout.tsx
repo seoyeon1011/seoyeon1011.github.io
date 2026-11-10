@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: SITE.description,
   authors: [{ name: SITE.author }],
   icons: { icon: { url: '/assets/img/favicon.svg', type: 'image/svg+xml' } },
-  verification: { google: SITE.googleVerification },
+  verification: { google: SITE.googleVerification, other: { 'naver-site-verification': SITE.naverVerification } },
   openGraph: { siteName: SITE.name, locale: 'ko_KR', images: [SITE.ogImage] },
   twitter: { card: 'summary_large_image' },
 };

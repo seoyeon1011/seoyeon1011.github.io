@@ -12,6 +12,7 @@ export const SITE = {
   shortDescription: '콘텐츠·SEO 마케팅, Claude Code 자동화, 자격증 공부 기록을 정리하는 마케팅 지식창고',
   ogImage: '/assets/img/og-default.png',
   googleVerification: 'gdfrXvGJt6Y3JZp6kloC7pqOFYaGpDImhtGKEk3gXN4',
+  naverVerification: 'd14ead4303422fa8bd80655b018837d770826c6f',
   // 관리자 화면이 글을 커밋하는 저장소
   owner: 'seoyeon1011',
   repo: 'seoyeon1011.github.io',

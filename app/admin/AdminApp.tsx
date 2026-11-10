@@ -336,7 +336,14 @@ export default function AdminApp() {
         return { ...im, path };
       });
 
+      // 화면에 없는 설정(카드 소개문, 검색 키워드, 관련 글 등)은 불러온 값을 그대로 둔다
+      const extra: Partial<PostSource> = {};
+      const loaded = cur as unknown as Partial<PostSource>;
+      for (const k of ['excerpt', 'searchKeywords', 'ldKeywords', 'breadcrumbTitle', 'related'] as const) {
+        if (loaded[k] !== undefined) (extra as Record<string, unknown>)[k] = loaded[k];
+      }
       const source: PostSource = {
+        ...extra,
         slug: cur.slug, category: cur.category, keyword: cur.keyword, seoTitle: cur.seoTitle, h1: cur.h1, desc: cur.desc,
         summary: cur.summary, body: cur.body, faqs: cur.faqs, indexable: cur.indexable, pubDate, modDate,
         images: images.filter((im) => im.path).map((im) => ({ no: im.no, path: im.path!, type: im.type, alt: im.alt, caption: im.caption, width: im.width, height: im.height })),

@@ -1,5 +1,6 @@
 'use client';
 // 전체 글: 검색 + 분류 필터. 처음 HTML에는 모든 카드가 들어 있어 검색엔진이 그대로 읽는다.
+// 글이 없는 분류는 필터 버튼을 보여 주지 않는다.
 import { useEffect, useState } from 'react';
 import type { CatSlug } from '@/lib/types';
 import { CATS, CAT_ORDER, dot } from '@/lib/site';
@@ -12,6 +13,7 @@ export interface FilterItem extends CardData {
 export default function PostFilter({ posts }: { posts: FilterItem[] }) {
   const [q, setQ] = useState('');
   const [cat, setCat] = useState<'all' | CatSlug>('all');
+  const cats = CAT_ORDER.filter((c) => posts.some((p) => p.category === c));
 
   useEffect(() => {
     const c = new URLSearchParams(window.location.search).get('cat');
@@ -33,9 +35,11 @@ export default function PostFilter({ posts }: { posts: FilterItem[] }) {
   return (
     <>
       <div className="filter">
-        <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="예: SEO, ADsP, 자동화" aria-label="글 검색" />
-        {btn('all', '전체')}
-        {CAT_ORDER.map((c) => btn(c, CATS[c].label))}
+        <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="예: 숏폼, SEO, ADsP" aria-label="글 검색" />
+        <div className="filter-buttons">
+          {btn('all', '전체')}
+          {cats.map((c) => btn(c, CATS[c].label))}
+        </div>
       </div>
       <div className="grid">
         {posts.map((p, i) => <PostCard key={p.slug} post={p} hidden={!visible[i]} />)}

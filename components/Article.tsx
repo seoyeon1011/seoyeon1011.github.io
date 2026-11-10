@@ -1,8 +1,8 @@
 // 글 본문 화면. 글 페이지(빌드)와 관리자 미리보기가 함께 쓴다. 훅을 쓰지 않아 서버·브라우저 어디서든 그려진다.
 import type { CatSlug, FaqItem } from '@/lib/types';
-import { CATS, SITE, catPath, dot } from '@/lib/site';
+import { CATS, SITE, catPath, dot, postPath } from '@/lib/site';
 import { inline, tocFromHtml } from '@/lib/markdown';
-import { RelatedCard } from './PostCard';
+import { RelatedCard, Tag } from './PostCard';
 import EditLink from './EditLink';
 
 export interface ArticleView {
@@ -19,6 +19,9 @@ export interface ArticleView {
   related: { slug: string; category: CatSlug; title: string }[];
   /** 수정 버튼을 붙일지 (글 페이지에서만) */
   editable?: boolean;
+  /** 이전 글(더 오래된 글), 다음 글(더 최근 글) */
+  prev?: { slug: string; title: string };
+  next?: { slug: string; title: string };
 }
 
 export default function Article({ view }: { view: ArticleView }) {
@@ -36,7 +39,7 @@ export default function Article({ view }: { view: ArticleView }) {
             <li>{view.crumb}</li>
           </ol>
         </nav>
-        <span className="tag">{cat.label}</span>
+        <Tag category={view.category} />
         <h1>{view.title}</h1>
         <div className="post-meta">
           <span>{SITE.author}</span>
@@ -85,6 +88,13 @@ export default function Article({ view }: { view: ArticleView }) {
           <h2>함께 읽으면 좋은 글</h2>
           <div className="grid">{view.related.map((p) => <RelatedCard key={p.slug} post={p} />)}</div>
         </section>
+      )}
+
+      {(view.prev || view.next) && (
+        <nav className="post-nav" aria-label="이전 글과 다음 글">
+          {view.prev ? <a className="prev" href={postPath(view.prev.slug)}><small>이전 글</small>{view.prev.title}</a> : <span />}
+          {view.next ? <a className="next" href={postPath(view.next.slug)}><small>다음 글</small>{view.next.title}</a> : <span />}
+        </nav>
       )}
     </article>
   );

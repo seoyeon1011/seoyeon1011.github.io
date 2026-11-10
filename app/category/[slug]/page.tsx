@@ -23,6 +23,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description: c.metaDescription,
     alternates: { canonical: abs(catPath(slug)) },
+    // 글이 하나도 없는 분류 페이지는 얇은 페이지로 보이지 않게 검색에서 뺀다 (글이 생기면 자동으로 노출)
+    robots: postsByCat(slug).length ? { index: true, follow: true } : { index: false, follow: true },
     openGraph: { ...OG_BASE, type: 'website', title, description: c.ogDescription, url: abs(catPath(slug)) },
   };
 }

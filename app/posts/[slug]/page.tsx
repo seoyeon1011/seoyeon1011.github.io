@@ -3,8 +3,9 @@ import { notFound } from 'next/navigation';
 import Shell from '@/components/Shell';
 import Article from '@/components/Article';
 import JsonLd from '@/components/JsonLd';
+import ReadingProgress from '@/components/ReadingProgress';
 import { CATS, OG_BASE, SITE, abs, catPath, postPath } from '@/lib/site';
-import { getAllPosts, getPost, getRelated } from '@/lib/posts';
+import { getAdjacent, getAllPosts, getPost, getRelated } from '@/lib/posts';
 
 export const dynamicParams = false;
 
@@ -43,6 +44,7 @@ export default async function PostPage({ params }: Props) {
   const url = abs(postPath(p.slug));
   const cat = CATS[p.category];
   const faqs = p.faqs.filter((f) => f.q.trim() && f.a.trim());
+  const adj = getAdjacent(p);
 
   const ld: object[] = [
     {
@@ -79,6 +81,7 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <Shell current={p.category}>
+      <ReadingProgress />
       <JsonLd data={ld} />
       <main id="main" className="wrap">
         <Article view={{
@@ -94,6 +97,8 @@ export default async function PostPage({ params }: Props) {
           faqs: p.faqs,
           related: getRelated(p).map((r) => ({ slug: r.slug, category: r.category, title: r.title })),
           editable: true,
+          prev: adj.prev && { slug: adj.prev.slug, title: adj.prev.title },
+          next: adj.next && { slug: adj.next.slug, title: adj.next.title },
         }} />
       </main>
     </Shell>

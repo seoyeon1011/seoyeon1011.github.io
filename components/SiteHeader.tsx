@@ -1,19 +1,20 @@
 'use client';
-// 헤더 메뉴. 메뉴 순서: 전체 글 / 마케팅 지식(콘텐츠·SEO, 마케팅 전략) / 포트폴리오(프로젝트, 자동화 실습, 자격증, 소개) / 일기
+// 헤더 메뉴. 순서: 전체 글 / 콘텐츠 트렌드 / 마케팅 지식 / 포트폴리오(+소개) / 일기
+// 묶음과 분류는 lib/site.ts 의 CAT_GROUPS, CATS 에서 만든다. 분류가 하나뿐인 묶음은 펼침 메뉴 없이 바로 링크한다.
 import { useEffect, useState } from 'react';
 import type { CatSlug } from '@/lib/types';
-import { CATS, CAT_ORDER, catPath } from '@/lib/site';
+import { CATS, CAT_GROUPS, catPath, catsInGroup } from '@/lib/site';
+import ThemeToggle from './ThemeToggle';
 
 export type NavKey = CatSlug | 'posts' | 'about';
 
 interface Item { key: NavKey; href: string; label: string }
 
 const catItem = (c: CatSlug): Item => ({ key: c, href: catPath(c), label: CATS[c].label });
-const GROUPS: { label: string; items: Item[] }[] = [
-  { label: '마케팅 지식', items: CAT_ORDER.filter((c) => CATS[c].group === 'knowledge').map(catItem) },
-  { label: '포트폴리오', items: [...CAT_ORDER.filter((c) => CATS[c].group === 'portfolio').map(catItem), { key: 'about', href: '/about', label: '소개' }] },
-];
-const DIARY: Item[] = CAT_ORDER.filter((c) => CATS[c].group === 'diary').map(catItem);
+const MENU = CAT_GROUPS.map((g) => ({
+  label: g.label,
+  items: [...catsInGroup(g.key).map(catItem), ...(g.key === 'portfolio' ? [{ key: 'about' as NavKey, href: '/about', label: '소개' }] : [])],
+}));
 
 export default function SiteHeader({ current }: { current?: NavKey }) {
   const [navOpen, setNavOpen] = useState(false);
@@ -39,22 +40,25 @@ export default function SiteHeader({ current }: { current?: NavKey }) {
     <header className="site-header">
       <div className="wrap">
         <a className="logo" href="/">Ref<span>.</span></a>
-        <button className="nav-toggle" aria-expanded={navOpen} aria-controls="site-nav" onClick={() => setNavOpen((v) => !v)}>메뉴</button>
-        <nav className={'nav' + (navOpen ? ' open' : '')} id="site-nav" aria-label="주요 메뉴">
-          <ul>
-            {link({ key: 'posts', href: '/posts', label: '전체 글' })}
-            {GROUPS.map((g) => {
-              const open = openGroup === g.label;
-              return (
-                <li key={g.label} className={'has-sub' + (open ? ' open' : '')}>
-                  <button type="button" className="sub-toggle" aria-expanded={open} onClick={() => setOpenGroup(open ? null : g.label)}>{g.label}</button>
-                  <ul className="sub">{g.items.map(link)}</ul>
-                </li>
-              );
-            })}
-            {DIARY.map(link)}
-          </ul>
-        </nav>
+        <div className="header-right">
+          <nav className={'nav' + (navOpen ? ' open' : '')} id="site-nav" aria-label="주요 메뉴">
+            <ul>
+              {link({ key: 'posts', href: '/posts', label: '전체 글' })}
+              {MENU.map((g) => {
+                if (g.items.length === 1) return link({ ...g.items[0], label: g.label });
+                const open = openGroup === g.label;
+                return (
+                  <li key={g.label} className={'has-sub' + (open ? ' open' : '')}>
+                    <button type="button" className="sub-toggle" aria-expanded={open} onClick={() => setOpenGroup(open ? null : g.label)}>{g.label}</button>
+                    <ul className="sub">{g.items.map(link)}</ul>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+          <ThemeToggle />
+          <button className="nav-toggle" aria-expanded={navOpen} aria-controls="site-nav" onClick={() => setNavOpen((v) => !v)}>메뉴</button>
+        </div>
       </div>
     </header>
   );

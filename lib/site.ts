@@ -6,10 +6,12 @@ export const SITE = {
   url: 'https://marketing-ref.vercel.app',
   name: 'Ref(레프)',
   author: '레프(Ref)',
-  title: 'Ref(레프) | 콘텐츠·SEO 마케팅 지식창고',
-  tagline: '콘텐츠·SEO 마케팅 지식창고',
-  description: '콘텐츠·SEO 마케팅, Claude Code 업무 자동화, ADsP 같은 자격증 공부 기록을 정리하는 레프의 마케팅 지식창고입니다.',
-  shortDescription: '콘텐츠·SEO 마케팅, Claude Code 자동화, 자격증 공부 기록을 정리하는 마케팅 지식창고',
+  title: 'Ref(레프) | 콘텐츠 트렌드·마케팅 지식창고',
+  tagline: '콘텐츠 트렌드·마케팅 지식창고',
+  description: '요즘 뜨는 콘텐츠 트렌드와 브랜드 사례, 콘텐츠·SEO 마케팅 지식, 직접 해 본 마케팅 프로젝트와 자동화 실습을 정리하는 2030 마케터의 지식창고입니다.',
+  shortDescription: '콘텐츠 트렌드, 마케팅 지식, 프로젝트 기록을 정리하는 2030 마케터의 지식창고',
+  instagram: 'https://www.instagram.com/ref.yeon/',
+  instagramHandle: '@ref.yeon',
   ogImage: '/assets/img/og-default.png',
   googleVerification: 'gdfrXvGJt6Y3JZp6kloC7pqOFYaGpDImhtGKEk3gXN4',
   naverVerification: 'd14ead4303422fa8bd80655b018837d770826c6f',
@@ -26,11 +28,14 @@ export const OG_BASE: { siteName: string; locale: string; images: string[] } = {
 
 export const RULE = { titleMin: 10, titleMax: 15, descMin: 120, descMax: 200, bodyMin: 2000, imgMin: 5, h2Min: 4, kwMin: 3, recentMax: 6 } as const;
 
+/** 메뉴 묶음. 순서: 콘텐츠 트렌드 / 마케팅 지식 / 포트폴리오 / 일기 */
+export type GroupKey = 'trend' | 'knowledge' | 'portfolio' | 'diary';
+
 export interface CatInfo {
   slug: CatSlug;
   /** 태그, 메뉴, 필터 버튼에 쓰는 짧은 이름 */
   label: string;
-  group: 'knowledge' | 'portfolio' | 'diary';
+  group: GroupKey;
   /** 분류 페이지 제목(h1)이자 홈 카드 제목 */
   title: string;
   metaDescription: string;
@@ -43,6 +48,28 @@ export interface CatInfo {
 }
 
 export const CATS: Record<CatSlug, CatInfo> = {
+  trend: {
+    slug: 'trend',
+    label: '트렌드 리포트',
+    group: 'trend',
+    title: '콘텐츠 트렌드 리포트',
+    metaDescription: '숏폼 포맷, 밈, SNS 플랫폼 변화처럼 지금 뜨는 콘텐츠 트렌드를 2030 마케터의 시선으로 정리하고, 마케팅에 어떻게 활용할 수 있는지 함께 담는 트렌드 리포트입니다.',
+    ogDescription: '지금 뜨는 콘텐츠 트렌드와 마케팅 활용법',
+    intro: '요즘 사람들이 무엇을 보고, 저장하고, 공유하는지 살펴봅니다. 숏폼 포맷, 밈, 플랫폼 변화처럼 지금 뜨는 콘텐츠 흐름을 정리하고, 마케팅에 어떻게 쓸 수 있는지까지 함께 적습니다.',
+    homeDesc: '숏폼, 밈, 플랫폼 변화처럼 지금 뜨는 콘텐츠 흐름과 마케팅 활용법',
+    empty: '첫 트렌드 리포트를 준비하고 있습니다.',
+  },
+  case: {
+    slug: 'case',
+    label: '브랜드 사례',
+    group: 'trend',
+    title: '브랜드 마케팅 사례',
+    metaDescription: '화제가 된 브랜드의 SNS 콘텐츠와 캠페인을 골라 왜 반응을 얻었는지, 타깃과 메시지, 채널 전략을 마케팅 관점에서 분석한 브랜드 사례 모음입니다.',
+    ogDescription: '화제가 된 브랜드 콘텐츠와 캠페인 분석',
+    intro: '반응이 좋았던 브랜드 콘텐츠와 캠페인을 골라, 누구에게 어떤 메시지를 어느 채널로 전했는지 뜯어봅니다. 잘된 이유를 내 마케팅에 바로 가져다 쓸 수 있게 정리합니다.',
+    homeDesc: '화제가 된 브랜드 SNS 콘텐츠와 캠페인을 마케팅 관점에서 분석',
+    empty: '첫 브랜드 사례 분석을 준비하고 있습니다.',
+  },
   'seo-content': {
     slug: 'seo-content',
     label: '콘텐츠·SEO',
@@ -112,13 +139,17 @@ export const CATS: Record<CatSlug, CatInfo> = {
 };
 
 /** 필터 버튼, 관리자 분류 선택, 사이트맵에 쓰는 순서 */
-export const CAT_ORDER: CatSlug[] = ['seo-content', 'marketing', 'project', 'automation', 'certificate', 'diary'];
+export const CAT_ORDER: CatSlug[] = ['trend', 'case', 'seo-content', 'marketing', 'project', 'automation', 'certificate', 'diary'];
 
-export const CAT_GROUPS: { key: CatInfo['group']; label: string }[] = [
-  { key: 'knowledge', label: '마케팅 지식' },
-  { key: 'portfolio', label: '포트폴리오' },
-  { key: 'diary', label: '일기' },
+/** 메뉴 묶음. desc는 홈 주제별 탭 설명 */
+export const CAT_GROUPS: { key: GroupKey; label: string; desc: string }[] = [
+  { key: 'trend', label: '콘텐츠 트렌드', desc: '지금 뜨는 콘텐츠 흐름과 화제가 된 브랜드 사례' },
+  { key: 'knowledge', label: '마케팅 지식', desc: '검색 유입과 브랜드 전략에 바로 쓰는 마케팅 개념' },
+  { key: 'portfolio', label: '포트폴리오', desc: '직접 해 본 프로젝트, 자동화 실습, 자격증 기록' },
+  { key: 'diary', label: '일기', desc: '공부하고 일하며 느낀 것들' },
 ];
+
+export const catsInGroup = (g: GroupKey) => CAT_ORDER.filter((c) => CATS[c].group === g);
 
 export function isCat(s: string): s is CatSlug {
   return Object.prototype.hasOwnProperty.call(CATS, s);

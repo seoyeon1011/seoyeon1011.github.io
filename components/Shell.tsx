@@ -7,12 +7,17 @@ export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="wrap">
-        <p>&copy; 2026 {SITE.name}. {SITE.tagline}</p>
+        <div>
+          <a className="logo" href="/">Ref<span>.</span></a>
+          <p>{SITE.tagline}</p>
+        </div>
         <ul>
           <li><a href="/about">소개</a></li>
+          <li><a href={SITE.instagram} rel="me noopener" target="_blank">인스타그램</a></li>
           <li><a href="/rss.xml">RSS</a></li>
           <li><a href="/sitemap.xml">사이트맵</a></li>
         </ul>
+        <p className="copy">&copy; 2026 {SITE.name}</p>
       </div>
     </footer>
   );

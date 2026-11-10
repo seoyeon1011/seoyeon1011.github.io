@@ -1,4 +1,4 @@
-export type CatSlug = 'seo-content' | 'marketing' | 'project' | 'automation' | 'certificate' | 'diary';
+export type CatSlug = 'trend' | 'case' | 'seo-content' | 'marketing' | 'project' | 'automation' | 'certificate' | 'diary';
 
 export interface PostImage {
   no: number;
@@ -38,6 +38,9 @@ export interface PostSource {
   images: PostImage[];
   nextImg?: number;
   published?: boolean;
+
+  /** 카드와 공유 미리보기에 쓸 대표 이미지 (assets/img/... 경로). 없으면 본문 첫 이미지, 그것도 없으면 분류 색 카드 */
+  thumbnail?: string;
 
   // ---- 관리자 화면 밖에서 만든 글 전용 (선택) ----
   /** 본문 HTML 파일 이름. content/posts 안에 있다. 이 값이 있으면 관리자 화면에서 불러올 수 없다 */

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Shell from '@/components/Shell';
 import PostFilter from '@/components/PostFilter';
 import { OG_BASE, SITE, abs } from '@/lib/site';
-import { getAllPosts } from '@/lib/posts';
+import { getAllPosts, toCard } from '@/lib/posts';
 
 const title = `전체 글 | ${SITE.name}`;
 
@@ -14,9 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default function PostsPage() {
-  const items = getAllPosts().map((p) => ({
-    slug: p.slug, category: p.category, title: p.title, cardText: p.cardText, pubDate: p.pubDate, keywords: p.searchText,
-  }));
+  const items = getAllPosts().map((p) => ({ ...toCard(p), keywords: p.searchText }));
   return (
     <Shell current="posts">
       <main id="main" className="wrap">

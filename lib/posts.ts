@@ -17,6 +17,8 @@ export interface Post extends PostSource {
   crumb: string;
   /** 본문 이미지 절대 주소 */
   imageUrls: string[];
+  /** 카드 썸네일 (사이트 기준 경로). 없으면 분류 색 카드로 그린다 */
+  thumb?: string;
   toc: { id: string; text: string }[];
   /** 관리자 화면에서 수정할 수 있는 글인지 */
   editable: boolean;
@@ -39,6 +41,8 @@ function load(file: string): Post {
     text = r.text;
   }
   const title = src.h1.trim() || src.seoTitle.trim();
+  const bodyImages = imagesFromHtml(bodyHtml);
+  const thumb = src.thumbnail ? '/' + src.thumbnail.replace(/^\//, '') : bodyImages[0];
   return {
     ...src,
     faqs: src.faqs || [],
@@ -50,7 +54,8 @@ function load(file: string): Post {
     cardText: src.excerpt || shortText(src.desc.trim(), 90),
     searchText: src.searchKeywords || src.keyword,
     crumb: src.breadcrumbTitle || src.seoTitle.trim() || title,
-    imageUrls: imagesFromHtml(bodyHtml).map((u) => (/^https?:/.test(u) ? u : abs(u))),
+    imageUrls: (thumb && !bodyImages.includes(thumb) ? [thumb, ...bodyImages] : bodyImages).map((u) => (/^https?:/.test(u) ? u : abs(u))),
+    thumb,
     toc: tocFromHtml(bodyHtml),
     editable: !src.bodyFile,
   };
@@ -87,6 +92,18 @@ export function getRelated(post: Post): Post[] {
     return post.related.map((s) => all.find((p) => p.slug === s)).filter((p): p is Post => !!p);
   }
   return all.filter((p) => p.category === post.category).concat(all.filter((p) => p.category !== post.category)).slice(0, 2);
+}
+
+/** 이전 글(더 오래된 글)과 다음 글(더 최근 글) */
+export function getAdjacent(post: Post): { prev?: Post; next?: Post } {
+  const all = getAllPosts();
+  const i = all.findIndex((p) => p.slug === post.slug);
+  return { next: i > 0 ? all[i - 1] : undefined, prev: i >= 0 && i < all.length - 1 ? all[i + 1] : undefined };
+}
+
+/** 카드에 넘길 최소 데이터 (브라우저로 보내는 크기를 줄인다) */
+export function toCard(p: Post) {
+  return { slug: p.slug, category: p.category, title: p.title, cardText: p.cardText, pubDate: p.pubDate, thumb: p.thumb };
 }
 
 export function lastMod(posts: Post[], fallback: string): string {

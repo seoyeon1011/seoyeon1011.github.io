@@ -1,0 +1,21 @@
+{
+  "slug": "aida-model-content-flow",
+  "category": "marketing",
+  "keyword": "AIDA 모델",
+  "seoTitle": "AIDA 모델로 흐름 잡기",
+  "h1": "AIDA 모델로 콘텐츠 흐름 잡기",
+  "breadcrumbTitle": "AIDA 모델로 콘텐츠 흐름 잡기",
+  "desc": "AIDA 모델은 주목, 흥미, 욕구, 행동의 네 단계로 독자의 마음이 움직이는 순서를 정리한 마케팅 공식이에요. 카드뉴스 7장 구성과 상세페이지 기획에 AIDA 모델을 대입하는 방법, 마지막 행동 단계에서 자주 하는 실수와 발행 전 체크리스트까지 한 번에 정리했어요.",
+  "excerpt": "주목·흥미·욕구·행동 네 단계로 카드뉴스와 상세페이지의 흐름을 잡는 방법과 발행 전 체크리스트를 정리했습니다.",
+  "searchKeywords": "AIDA 모델 주목 흥미 욕구 행동 콘텐츠 기획 카드뉴스 상세페이지 카피라이팅 CTA",
+  "ldKeywords": "AIDA 모델, AIDA, 콘텐츠 기획, 카드뉴스 구성, 상세페이지 기획, 카피라이팅, CTA",
+  "summary": "AIDA 모델은 주목(Attention), 흥미(Interest), 욕구(Desire), 행동(Action) 순서로 독자의 마음이 움직이는 단계를 정리한 마케팅 공식입니다.\n카드뉴스는 1장 주목, 2~3장 흥미, 4~6장 욕구, 마지막 장 행동으로, 상세페이지는 스크롤 순서에 맞춰 네 단계를 배치합니다.\n마지막 행동 단계에서는 원하는 행동을 딱 하나만 분명하게 요청하고, 발행 전 네 가지 질문으로 흐름을 점검합니다.",
+  "bodyFile": "aida-model-content-flow.html",
+  "faqs": [],
+  "related": ["marketing-problem-definition", "seo-content-writing-guide"],
+  "readMinutes": 5,
+  "indexable": true,
+  "pubDate": "2026-11-10",
+  "modDate": "2026-11-10",
+  "images": []
+}

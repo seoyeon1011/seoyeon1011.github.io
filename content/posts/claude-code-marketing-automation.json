@@ -1,0 +1,24 @@
+{
+  "slug": "claude-code-marketing-automation",
+  "category": "automation",
+  "keyword": "Claude Code 마케팅 자동화",
+  "seoTitle": "Claude Code 자동화",
+  "h1": "Claude Code 마케팅 자동화: 비개발자 실습 기록",
+  "breadcrumbTitle": "Claude Code 마케팅 자동화",
+  "desc": "비개발자 마케터가 Claude Code 스킬 11개로 마케팅 업무를 자동화한 실습 기록입니다. 블로그 초안과 SNS 요약 연계, 콘텐츠 성과 분석, 리드 스코어링, 채널별 주간 성과 판정과 슬랙 전송까지 만든 과정과 AI 결과를 믿을 수 있게 만든 자체 검증 규칙을 정리했습니다.",
+  "excerpt": "코딩 없이 Claude Code 스킬 11개로 블로그 작성, 성과 분석, 주간 보고를 자동화한 과정을 정리했습니다.",
+  "searchKeywords": "Claude Code 클로드 코드 마케팅 자동화 스킬 비개발자 AI",
+  "ldKeywords": "Claude Code 마케팅 자동화, 클로드 코드, 마케팅 업무 자동화, AI 자동화",
+  "summary": "가상의 화장품 브랜드 마케팅팀 업무를 Claude Code 스킬 11개로 자동화했습니다.\n콘텐츠 제작, 데이터 분석, 운영 보고 세 영역으로 나눠 만들었습니다.\n가장 중요한 것은 기준 파일의 숫자만 쓰고, 결과마다 자체 검증을 붙이는 규칙이었습니다.",
+  "bodyFile": "claude-code-marketing-automation.html",
+  "faqs": [
+    { "q": "코딩을 몰라도 Claude Code로 자동화할 수 있나요?", "a": "가능합니다. 스킬은 프로그램 코드가 아니라 업무 절차를 글로 적은 문서입니다. 입력 파일, 작업 순서, 출력 형식, 검증 방법을 한국어로 정리하면 Claude Code가 그 절차대로 작업합니다." },
+    { "q": "AI가 숫자를 틀리지 않게 하려면 어떻게 하나요?", "a": "합계, 평균, 로아스 같은 계산은 눈대중이 아니라 코드로 계산하도록 스킬에 적고, 결과를 내기 전에 다시 계산해 대조하는 자체 검증 단계를 넣었습니다." }
+  ],
+  "related": ["seo-content-writing-guide", "adsp-self-study-review", "marketing-problem-definition"],
+  "readMinutes": 8,
+  "indexable": true,
+  "pubDate": "2026-11-04",
+  "modDate": "2026-11-04",
+  "images": []
+}

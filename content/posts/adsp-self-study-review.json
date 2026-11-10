@@ -1,0 +1,25 @@
+{
+  "slug": "adsp-self-study-review",
+  "category": "certificate",
+  "keyword": "ADsP 독학 후기",
+  "seoTitle": "ADsP 비전공자 독학 후기",
+  "h1": "ADsP 비전공자 독학 후기: 기간·교재·공부법",
+  "breadcrumbTitle": "ADsP 독학 후기",
+  "desc": "비전공자 대학생이 ADsP(데이터분석 준전문가)를 독학으로 준비한 후기입니다. 공부 기간과 주차별 계획표, 사용한 교재와 강의, 1과목부터 3과목 통계까지 과목별 공부법, 시험 당일 후기와 점수, 마케터에게 ADsP가 실제로 쓸모 있었는지까지 정리했습니다.",
+  "excerpt": "비전공 마케터가 ADsP를 독학으로 준비한 기간, 교재, 과목별 공부법을 정리했습니다.",
+  "searchKeywords": "ADsP 데이터분석 준전문가 독학 후기 자격증 비전공자",
+  "ldKeywords": "ADsP 독학 후기, ADsP 비전공자, 데이터분석 준전문가, ADsP 공부법",
+  "summary": "50회차 응시, 2주 공부 방법\n2주, 하루 공부량 최소 3-4시간\n민트책+아답터 자료로 개념 반복",
+  "bodyFile": "adsp-self-study-review.html",
+  "faqs": [
+    { "q": "ADsP 비전공자도 독학으로 합격할 수 있나요?", "a": "[직접 작성] 내 경험 기준 2~3문장" },
+    { "q": "ADsP 공부 기간은 얼마나 걸리나요?", "a": "[직접 작성] 실제 공부 기간과 하루 공부 시간" }
+  ],
+  "faqSchema": false,
+  "related": ["claude-code-marketing-automation", "seo-content-writing-guide"],
+  "readMinutes": 6,
+  "indexable": false,
+  "pubDate": "2026-11-04",
+  "modDate": "2026-11-04",
+  "images": []
+}

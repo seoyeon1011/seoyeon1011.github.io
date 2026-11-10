@@ -56,7 +56,7 @@ export default async function PostPage({ params }: Props) {
       keywords: p.ldKeywords || p.keyword.trim(),
       image: p.imageUrls.length ? p.imageUrls : [abs(SITE.ogImage)],
       mainEntityOfPage: url,
-      author: { '@type': 'Person', name: SITE.author, url: abs('/about.html') },
+      author: { '@type': 'Person', name: SITE.author, url: abs('/about') },
       publisher: { '@type': 'Person', name: SITE.author },
     },
     {

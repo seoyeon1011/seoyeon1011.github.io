@@ -3,7 +3,7 @@
 import type { CatSlug } from './types';
 
 export const SITE = {
-  url: 'https://seoyeon1011.github.io',
+  url: 'https://marketing-ref.vercel.app',
   name: 'Ref(레프)',
   author: '레프(Ref)',
   title: 'Ref(레프) | 콘텐츠·SEO 마케팅 지식창고',
@@ -60,7 +60,7 @@ export const CATS: Record<CatSlug, CatInfo> = {
     title: '마케팅 전략',
     metaDescription: '마케팅 문제 정의, 3C, SWOT, STP, 4P, IMC처럼 브랜드 전략을 세울 때 쓰는 마케팅 개념과 분석 틀을 쉬운 예시와 함께 정리한 지식 모음입니다.',
     ogDescription: '브랜드 전략에 쓰는 마케팅 개념과 분석 틀 모음',
-    intro: '좋은 해결책은 정확한 문제 정의에서 나옵니다. 고객의 고민을 진짜 문제로 바꾸는 방법, 3C·SWOT·STP·4P 같은 분석 틀, 여러 채널에서 하나의 메시지를 전하는 IMC처럼 브랜드 전략을 세울 때 필요한 마케팅 지식을 정리합니다. 이 지식을 실제로 적용한 작업은 <a href="/category/project.html">프로젝트</a>에서 볼 수 있습니다.',
+    intro: '좋은 해결책은 정확한 문제 정의에서 나옵니다. 고객의 고민을 진짜 문제로 바꾸는 방법, 3C·SWOT·STP·4P 같은 분석 틀, 여러 채널에서 하나의 메시지를 전하는 IMC처럼 브랜드 전략을 세울 때 필요한 마케팅 지식을 정리합니다. 이 지식을 실제로 적용한 작업은 <a href="/category/project">프로젝트</a>에서 볼 수 있습니다.',
     homeDesc: '문제 정의, 3C·SWOT·STP·4P, IMC처럼 브랜드 전략을 세울 때 쓰는 마케팅 개념과 분석 틀',
     empty: '아직 올린 글이 없습니다.',
   },
@@ -71,7 +71,7 @@ export const CATS: Record<CatSlug, CatInfo> = {
     title: '기업 연계 프로젝트',
     metaDescription: '실제 기업의 고민을 마케팅 문제로 정의하고 3C, SWOT, STP, 4P 분석으로 해결책을 설계한 기업 연계 프로젝트 작업 기록을 모았습니다.',
     ogDescription: '기업 연계 마케팅 프로젝트 작업 기록',
-    intro: '실제 기업의 고민을 듣고 마케팅 문제로 정의한 뒤, 분석과 해결책 설계까지 직접 진행한 작업 기록입니다. 프로젝트에 쓴 개념과 분석 틀은 <a href="/category/marketing.html">마케팅 전략</a>에 정리해 두었습니다.',
+    intro: '실제 기업의 고민을 듣고 마케팅 문제로 정의한 뒤, 분석과 해결책 설계까지 직접 진행한 작업 기록입니다. 프로젝트에 쓴 개념과 분석 틀은 <a href="/category/marketing">마케팅 전략</a>에 정리해 두었습니다.',
     homeDesc: '실제 기업의 고민을 마케팅 문제로 정의하고 분석과 해결책을 설계한 작업 기록',
     empty: '아직 올린 프로젝트 기록이 없습니다.',
   },
@@ -124,8 +124,9 @@ export function isCat(s: string): s is CatSlug {
 }
 
 // ---------- 주소 ----------
-export const postPath = (slug: string) => `/posts/${slug}.html`;
-export const catPath = (slug: CatSlug) => `/category/${slug}.html`;
+// Vercel은 .html 없는 주소로 페이지를 연다. 예전 .html 주소는 vercel.json 이 새 주소로 옮긴다
+export const postPath = (slug: string) => `/posts/${slug}`;
+export const catPath = (slug: CatSlug) => `/category/${slug}`;
 export const abs = (p: string) => SITE.url + (p.startsWith('/') ? p : '/' + p);
 
 // ---------- 날짜 ----------

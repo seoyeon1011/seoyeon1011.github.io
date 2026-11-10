@@ -9,8 +9,8 @@ const title = `전체 글 | ${SITE.name}`;
 export const metadata: Metadata = {
   title,
   description: '콘텐츠·SEO 마케팅, Claude Code 자동화, 자격증 공부 기록까지 레프의 지식창고에 있는 모든 글을 주제별로 찾아볼 수 있습니다.',
-  alternates: { canonical: abs('/posts.html') },
-  openGraph: { ...OG_BASE, type: 'website', title, description: '콘텐츠·SEO 마케팅, Claude Code 자동화, 자격증 공부 기록 모음', url: abs('/posts.html') },
+  alternates: { canonical: abs('/posts') },
+  openGraph: { ...OG_BASE, type: 'website', title, description: '콘텐츠·SEO 마케팅, Claude Code 자동화, 자격증 공부 기록 모음', url: abs('/posts') },
 };
 
 export default function PostsPage() {

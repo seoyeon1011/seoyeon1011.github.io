@@ -29,9 +29,10 @@ export function shortText(s: string, n: number): string {
   return s.length > n ? s.slice(0, n - 1).replace(/\s+\S*$/, '') + '…' : s;
 }
 
-/** 본문 링크 주소 정리: 내 글은 "파일명.html"만 써도 /posts/파일명.html 로 연결한다 */
+/** 본문 링크 주소 정리: 내 글은 "슬러그.html"만 써도 /posts/슬러그 로 연결한다 */
 export function resolveHref(url: string): string {
-  if (/^[a-z0-9-]+\.html(#.*)?$/.test(url)) return '/posts/' + url;
+  let m: RegExpMatchArray | null;
+  if ((m = url.match(/^(?:\/posts\/)?([a-z0-9-]+)\.html(#.*)?$/))) return '/posts/' + m[1] + (m[2] || '');
   if (url.startsWith('../')) return '/' + url.slice(3);
   return url;
 }

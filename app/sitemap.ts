@@ -10,8 +10,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const latest = lastMod(posts, SITE.launched);
   return [
     { url: abs('/'), lastModified: latest },
-    { url: abs('/posts.html'), lastModified: latest },
-    { url: abs('/about.html'), lastModified: SITE.aboutUpdated },
+    { url: abs('/posts'), lastModified: latest },
+    { url: abs('/about'), lastModified: SITE.aboutUpdated },
     ...CAT_ORDER.map((c) => ({ url: abs(catPath(c)), lastModified: lastMod(posts.filter((p) => p.category === c), SITE.launched) })),
     ...posts.map((p) => ({ url: abs(postPath(p.slug)), lastModified: p.modDate || p.pubDate })),
   ];

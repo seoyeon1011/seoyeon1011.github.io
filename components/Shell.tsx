@@ -9,7 +9,7 @@ export function SiteFooter() {
       <div className="wrap">
         <p>&copy; 2026 {SITE.name}. {SITE.tagline}</p>
         <ul>
-          <li><a href="/about.html">소개</a></li>
+          <li><a href="/about">소개</a></li>
           <li><a href="/rss.xml">RSS</a></li>
           <li><a href="/sitemap.xml">사이트맵</a></li>
         </ul>

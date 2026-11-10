@@ -8,8 +8,8 @@ const title = `소개 | ${SITE.name} 콘텐츠·SEO 마케터 포트폴리오`;
 export const metadata: Metadata = {
   title,
   description: '콘텐츠·SEO 마케팅과 Claude Code 업무 자동화를 공부하고 실습하는 레프(Ref)의 포트폴리오입니다. 역량, 사용 도구, 실습 기록을 정리했습니다.',
-  alternates: { canonical: abs('/about.html') },
-  openGraph: { ...OG_BASE, type: 'profile', title, description: '콘텐츠·SEO 마케팅과 Claude Code 자동화 포트폴리오', url: abs('/about.html') },
+  alternates: { canonical: abs('/about') },
+  openGraph: { ...OG_BASE, type: 'profile', title, description: '콘텐츠·SEO 마케팅과 Claude Code 자동화 포트폴리오', url: abs('/about') },
 };
 
 // 연락처는 사용자가 공개를 요청한 것만 쓴다 (CLAUDE.md)
@@ -40,7 +40,7 @@ export default function AboutPage() {
         mainEntity: {
           '@type': 'Person',
           name: SITE.author,
-          url: abs('/about.html'),
+          url: abs('/about'),
           jobTitle: '콘텐츠·SEO 마케터',
           sameAs: ['https://github.com/seoyeon1011', 'https://www.instagram.com/ref.yeon/'],
           knowsAbout: ['SEO', '콘텐츠 마케팅', 'Claude Code', '마케팅 자동화', '데이터 분석'],

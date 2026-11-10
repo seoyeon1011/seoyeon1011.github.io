@@ -76,7 +76,7 @@ export default function Article({ view }: { view: ArticleView }) {
         <div className="avatar" aria-hidden="true">R</div>
         <div>
           <p><strong>{SITE.author}</strong></p>
-          <p>콘텐츠·SEO 마케팅을 공부하며 Claude Code로 마케팅 업무를 자동화하고 있습니다. <a href="/about.html">소개 보기</a></p>
+          <p>콘텐츠·SEO 마케팅을 공부하며 Claude Code로 마케팅 업무를 자동화하고 있습니다. <a href="/about">소개 보기</a></p>
         </div>
       </aside>
 

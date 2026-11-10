@@ -15,7 +15,7 @@ export default function NotFound() {
         <p>주소가 바뀌었거나 삭제된 글일 수 있습니다.</p>
         <div className="actions">
           <a className="btn btn-primary" href="/">홈으로</a>
-          <a className="btn btn-ghost" href="/posts.html">전체 글 보기</a>
+          <a className="btn btn-ghost" href="/posts">전체 글 보기</a>
         </div>
       </div>
     </main>

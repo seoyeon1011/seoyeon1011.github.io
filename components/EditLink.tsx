@@ -9,5 +9,5 @@ export default function EditLink({ slug }: { slug: string }) {
     try { setShow(localStorage.getItem('ref_admin') === '1'); } catch { /* 저장소 접근이 막힌 브라우저 */ }
   }, []);
   if (!show) return null;
-  return <a className="edit-link" href={'/admin.html?edit=' + slug} rel="nofollow">수정</a>;
+  return <a className="edit-link" href={'/admin?edit=' + slug} rel="nofollow">수정</a>;
 }

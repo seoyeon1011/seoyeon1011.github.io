@@ -45,7 +45,7 @@ Next.js로 만든 정적 사이트입니다. 글은 `content/posts/` 의 JSON �
 
 ## 관리자 화면으로 글 쓰고 게시하기
 
-주소: `사이트주소/admin.html` (예전 주소 `/admin/` 도 자동으로 이동합니다. 메뉴에는 없으니 즐겨찾기 해 두세요)
+주소: `https://marketing-ref.vercel.app/admin` (메뉴에는 없으니 즐겨찾기 해 두세요)
 
 처음 한 번 토큰 만들기:
 1. GitHub 프로필 > Settings > Developer settings > Personal access tokens > Fine-grained tokens > Generate new token
@@ -70,7 +70,7 @@ Next.js로 만든 정적 사이트입니다. 글은 `content/posts/` 의 JSON �
 | 항목 | 설명 |
 | --- | --- |
 | title, meta description | 페이지마다 따로 작성 |
-| canonical | 중복 주소 방지. 예전 .html 주소를 그대로 유지 |
+| canonical | 중복 주소 방지. 예전 .html 주소로 들어오면 새 주소로 영구 이동(vercel.json) |
 | Open Graph | 카카오톡, SNS 공유 미리보기 |
 | 구조화 데이터(JSON-LD) | 홈 WebSite, 글 BlogPosting + BreadcrumbList + FAQPage, 소개 ProfilePage |
 | 이동경로, 목차 | 글마다 이동경로 표시, 소제목(h2)이 3개 이상이면 목차를 빌드할 때 생성 |
@@ -80,8 +80,8 @@ Next.js로 만든 정적 사이트입니다. 글은 `content/posts/` 의 JSON �
 
 ## 검색엔진 등록
 
-1. 구글 서치콘솔: 소유 확인 코드는 `lib/site.ts` 의 `googleVerification` 에 들어 있습니다. Sitemaps 메뉴에 `sitemap.xml` 제출
-2. 네이버 서치어드바이저: HTML 태그 방식으로 소유 확인이 필요하면 `app/layout.tsx` 의 `verification` 에 `other: { 'naver-site-verification': '값' }` 을 추가합니다. 사이트맵 `https://seoyeon1011.github.io/sitemap.xml`, RSS `https://seoyeon1011.github.io/rss.xml` 제출
+1. 구글 서치콘솔: 새 주소로 속성을 추가하고, 받은 소유 확인 코드를 `lib/site.ts` 의 `googleVerification` 에 넣습니다 (지금 값은 예전 github.io 주소용). Sitemaps 메뉴에 `sitemap.xml` 제출
+2. 네이버 서치어드바이저: HTML 태그 방식으로 소유 확인이 필요하면 `app/layout.tsx` 의 `verification` 에 `other: { 'naver-site-verification': '값' }` 을 추가합니다. 사이트맵 `https://marketing-ref.vercel.app/sitemap.xml`, RSS `https://marketing-ref.vercel.app/rss.xml` 제출
 3. GA4가 필요하면 측정 ID(G-XXXX)를 발급받아 Claude Code에 "GA4 G-XXXX 넣어줘"라고 요청
 
 ## 새 글 발행 (Claude Code)

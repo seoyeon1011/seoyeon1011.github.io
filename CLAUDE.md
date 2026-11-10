@@ -13,7 +13,7 @@ Ref(레프) 콘텐츠·SEO 마케팅 지식창고 사이트. Next.js(App Router,
 ## 명령
 
 - `npm install` 처음 한 번
-- `npm run dev` 개발 서버 (http://localhost:3000). 개발할 때도 `/posts/슬러그.html` 같은 .html 주소로 열린다 (next.config.mjs의 개발용 rewrites)
+- `npm run dev` 개발 서버 (http://localhost:3000)
 - `npm run build` 정적 파일을 `out/` 에 생성. 글 JSON 형식 오류, 슬러그와 파일명 불일치, 알 수 없는 분류는 여기서 빌드 오류로 드러난다
 - 테스트와 린트 설정은 없다. 고친 뒤에는 `npm run build` 통과를 확인한다
 
@@ -29,9 +29,10 @@ Ref(레프) 콘텐츠·SEO 마케팅 지식창고 사이트. Next.js(App Router,
 | lib/seo.ts | 관리자 화면 SEO 점검 |
 | components/ | 헤더, 푸터, 카드, 글 본문(Article), 전체 글 필터 |
 | app/ | 페이지. posts/[slug], category/[slug], about, admin, sitemap.ts, rss.xml/route.ts, not-found(404) |
-| public/ | 이미지(assets/img), robots.txt, 예전 관리자 주소 이동용 admin/index.html |
+| public/ | 이미지(assets/img), robots.txt |
+| vercel.json | 예전 .html 주소를 새 주소로 옮기는 영구 이동(301) 설정 |
 
-공개 주소는 예전 정적 사이트와 같다 (`/posts/슬러그.html`, `/category/분류.html`, `/posts.html`, `/about.html`). 이미 검색엔진에 등록된 주소이므로 바꾸지 않는다. 사이트 안 링크는 `lib/site.ts` 의 `postPath`, `catPath` 로 만들고 `<a>` 를 쓴다 (`next/link` 는 .html 주소와 맞지 않는다).
+공개 주소는 `.html` 없는 형식이다 (`/posts/슬러그`, `/category/분류`, `/posts`, `/about`, `/admin`). Vercel은 `.html` 주소로 페이지를 열지 않으므로 사이트 안 링크에 `.html` 을 붙이지 않는다. 예전 GitHub Pages 시절 `.html` 주소로 들어오면 vercel.json 이 새 주소로 옮긴다. 사이트 안 링크는 `lib/site.ts` 의 `postPath`, `catPath` 로 만들고 `<a>` 를 쓴다.
 
 ## 글 JSON 형식
 
@@ -40,7 +41,7 @@ Ref(레프) 콘텐츠·SEO 마케팅 지식창고 사이트. Next.js(App Router,
 1. 관리자 화면 글: `body` 에 간단한 마크다운 본문, `images` 에 이미지 목록(`path` 는 `assets/img/posts/...`, 실제 파일은 `public/` 아래). 관리자 화면에서 다시 불러와 고칠 수 있다
 2. 관리자 화면 밖에서 만든 글: `bodyFile` 로 본문 HTML 파일을 가리킨다. 관리자 화면에서 불러올 수 없고 Claude Code로 고친다. `excerpt`, `searchKeywords`, `ldKeywords`, `breadcrumbTitle`, `readMinutes`, `related`, `faqSchema` 선택 필드를 쓸 수 있다
 
-`indexable: false` 인 글(작성 중)은 사이트에는 보이지만 noindex가 붙고 사이트맵·RSS에서 빠진다. 본문 HTML 안의 내부 링크와 이미지는 `/posts/슬러그.html`, `/assets/img/...` 처럼 `/` 로 시작하는 절대 경로로 쓴다.
+`indexable: false` 인 글(작성 중)은 사이트에는 보이지만 noindex가 붙고 사이트맵·RSS에서 빠진다. 본문 HTML 안의 내부 링크와 이미지는 `/posts/슬러그`, `/assets/img/...` 처럼 `/` 로 시작하는 절대 경로로 쓴다.
 
 ## 글 작성과 SEO 기준
 
@@ -55,10 +56,10 @@ Ref(레프) 콘텐츠·SEO 마케팅 지식창고 사이트. Next.js(App Router,
 
 ## 글을 올리는 두 가지 방법
 
-1. 관리자 화면 `/admin.html` (예전 주소 `/admin/` 은 자동으로 이동): 사용자가 브라우저에서 직접 쓰고 GitHub 토큰으로 게시한다. 게시하면 `content/posts/슬러그.json` 과 이미지(`public/assets/img/posts/`)만 한 커밋으로 올라가고, Vercel 빌드가 끝나면(보통 1~2분) 목록·사이트맵·RSS까지 반영된다
+1. 관리자 화면 `/admin`: 사용자가 브라우저에서 직접 쓰고 GitHub 토큰으로 게시한다. 게시하면 `content/posts/슬러그.json` 과 이미지(`public/assets/img/posts/`)만 한 커밋으로 올라가고, Vercel 빌드가 끝나면(보통 1~2분) 목록·사이트맵·RSS까지 반영된다
 2. Claude Code: 레프글작성 스킬 절차로 `content/posts/` 에 글 파일을 만들고 `npm run build` 로 확인한 뒤, 사용자가 GitHub에 올린다
 
-글 페이지의 "수정" 버튼은 `components/EditLink.tsx` 가 붙인다. 관리자 화면에 로그인하면 localStorage에 `ref_admin=1` 표시가 생기고(토큰은 저장하지 않음), 그 브라우저에서만 버튼이 보인다. 버튼은 `/admin.html?edit=슬러그` 로 이동해 글 JSON을 자동으로 불러온다. 버튼 노출은 편의 기능일 뿐이고 실제 권한은 토큰이 막는다.
+글 페이지의 "수정" 버튼은 `components/EditLink.tsx` 가 붙인다. 관리자 화면에 로그인하면 localStorage에 `ref_admin=1` 표시가 생기고(토큰은 저장하지 않음), 그 브라우저에서만 버튼이 보인다. 버튼은 `/admin?edit=슬러그` 로 이동해 글 JSON을 자동으로 불러온다. 버튼 노출은 편의 기능일 뿐이고 실제 권한은 토큰이 막는다.
 
 ## 카테고리
 

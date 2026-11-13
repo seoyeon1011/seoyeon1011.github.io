@@ -63,7 +63,7 @@ export default function AboutPage() {
             <h2 id="tools">Tools &amp; AI</h2>
             <div className="skill-groups">{TOOLS.map((g) => <Group key={g.title} {...g} />)}</div>
 
-            <h2 id="practice">프로젝트</h2>
+            <h2 id="practice">m</h2>
             <h3>프로젝트 이름</h3>
             <p>내용 채우기</p>
             <h3>프로젝트 이름</h3>

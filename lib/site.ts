@@ -12,7 +12,8 @@ export const SITE = {
   shortDescription: '콘텐츠 트렌드, 마케팅 지식, 프로젝트 기록을 정리하는 2030 마케터의 지식창고',
   instagram: 'https://www.instagram.com/ref.yeon/',
   instagramHandle: '@ref.yeon',
-  ogImage: '/assets/img/og-default.png',
+  // 공유 미리보기 이미지. 이미지를 바꿀 때는 파일 이름도 바꾼다 (카카오·네이버가 같은 주소의 예전 이미지를 계속 보여 줌)
+  ogImage: '/assets/img/og-default-20261113.png',
   googleVerification: 'gdfrXvGJt6Y3JZp6kloC7pqOFYaGpDImhtGKEk3gXN4',
   naverVerification: 'd14ead4303422fa8bd80655b018837d770826c6f',
   // 관리자 화면이 글을 커밋하는 저장소

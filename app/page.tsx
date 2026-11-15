@@ -38,7 +38,7 @@ export default function Home() {
         <section className="hero">
           <div className="wrap">
             <p className="eyebrow">Content Trend &amp; Marketing Note</p>
-            <h1><span className="spark">SPARK:CLING</span><br />번뜩였다 사라지는 생각을, 쓸 수 있는 전략으로</h1>
+            <h1><span className="spark">SPARK:CLING</span><br />번뜩였다 사라지는 생각을,<br />쓸 수 있는 전략으로</h1>
             <div className="actions">
               <a className="btn btn-primary" href="/posts">전체 글 보기</a>
               <a className="btn btn-ghost" href="/about">포트폴리오 소개</a>

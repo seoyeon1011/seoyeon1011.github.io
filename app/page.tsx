@@ -38,11 +38,7 @@ export default function Home() {
         <section className="hero">
           <div className="wrap">
             <p className="eyebrow">Content Trend &amp; Marketing Note</p>
-            <h1><span className="spark">SPARK:CLING,</span><br />반짝이는 생각을 끝까지 붙잡습니다.</h1>
-            <p>
-              spark:cling은 제가 일하는 방식입니다.<br />좋은 콘텐츠는 번뜩이는 아이디어(spark)에서 시작하지만, <br />결과는 끝까지 붙잡는 태도(cling)에서 나온다고 믿습니다.<br />
-              사람들이 실제로 찾고 읽는 콘텐츠를 기획하고, 데이터를 보며 다시 고치고, <br />성과로 이어질 때까지 놓지 않습니다.<br />이곳에는 그렇게 만들어온 프로젝트와 그 과정을 담았습니다.
-            </p>
+            <h1><span className="spark">SPARK:CLING</span><br />번뜩였다 사라지는 생각을, 쓸 수 있는 전략으로</h1>
             <div className="actions">
               <a className="btn btn-primary" href="/posts">전체 글 보기</a>
               <a className="btn btn-ghost" href="/about">포트폴리오 소개</a>

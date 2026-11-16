@@ -16,10 +16,10 @@
     { "q": "메타 설명은 순위에 영향을 주나요?", "a": "메타 설명은 순위를 직접 올리는 요소라기보다 검색 결과에서 클릭을 부르는 요약문입니다. 검색엔진이 다른 문장으로 바꿔 보여줄 때도 있지만, 글의 핵심과 키워드를 담아 두면 클릭률을 높이는 데 도움이 됩니다." },
     { "q": "네이버와 구글 SEO는 다르게 써야 하나요?", "a": "검색 의도에 맞는 답을 주는 좋은 글이라는 기본은 같습니다. 다만 노출 방식과 등록 절차가 다르므로 구글 서치콘솔과 네이버 서치어드바이저에 각각 사이트를 등록하고 사이트맵을 제출해야 합니다." }
   ],
-  "related": ["claude-code-marketing-automation", "adsp-self-study-review", "marketing-problem-definition", "aida-model-content-flow"],
-  "readMinutes": 7,
+  "related": ["claude-code-marketing-automation", "image-seo-ai", "marketing-problem-definition", "aida-model-content-flow"],
+  "readMinutes": 8,
   "indexable": true,
   "pubDate": "2026-11-04",
-  "modDate": "2026-11-04",
+  "modDate": "2026-11-16",
   "images": []
 }

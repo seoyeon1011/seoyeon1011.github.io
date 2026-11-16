@@ -7,7 +7,7 @@ import { useEffect, useMemo, useRef, useState, type ChangeEvent } from 'react';
 import type { CatSlug, FaqItem, PostSource } from '@/lib/types';
 import { CATS, CAT_GROUPS, CAT_ORDER, RULE, SITE, abs, postPath, today } from '@/lib/site';
 import { readMinutes, renderBody } from '@/lib/markdown';
-import { SLUG_RE, runChecks } from '@/lib/seo';
+import { CHECK_GROUPS, SLUG_RE, runChecks } from '@/lib/seo';
 import Article from '@/components/Article';
 import { GitHub, type CommitFile, type GhError } from './github';
 import { draftKeys, getDraft, putDraft } from './drafts';
@@ -87,8 +87,8 @@ function processImage(file: File): Promise<{ blob: Blob; type: string; width: nu
 }
 
 const SYNTAX: [string, string][] = [
-  ['## 소제목', '소제목(H2). 목차에 자동으로 들어감'],
-  ['### 작은 소제목', 'H3'],
+  ['## 소제목', '소제목(H2). 목차에 자동으로 들어감. H1(글 제목)은 위 칸에서 정하므로 본문에 # 한 개짜리 제목은 쓰지 않음'],
+  ['### 작은 소제목', 'H3. 반드시 H2 아래에'],
   ['- 내용 / 1. 내용', '목록 / 번호 목록'],
   ['> 내용', '인용'],
   ['| 항목 | 내용 |', '표. 첫 줄이 머리글'],
@@ -459,24 +459,24 @@ export default function AdminApp() {
                 </label>
               </div>
 
-              <label>SEO 타이틀 {counter(`${check.titleLen}자 / ${RULE.titleMin}~${RULE.titleMax}`, check.list[0].ok)}
+              <label>SEO 타이틀 {counter(`${check.titleLen}자 / ${RULE.titleMin}~${RULE.titleMax}`, check.ok('titleLen'))}
                 <input type="text" value={s.seoTitle} onChange={onText('seoTitle')} placeholder="검색 결과에 보일 제목, 10~15자, 키워드를 앞에" />
               </label>
-              <label>글 제목 (페이지 맨 위 큰 제목)
-                <input type="text" value={s.h1} onChange={onText('h1')} placeholder="비우면 SEO 타이틀과 같게 들어갑니다" />
+              <label>메타 디스크립션 {counter(`${check.descLen}자 / ${RULE.descMin}~${RULE.descMax}`, check.ok('descLen'))}
+                <textarea rows={3} value={s.desc} onChange={onText('desc')} placeholder="검색 결과 제목 아래 보이는 요약문, 120~200자, 키워드 포함" />
               </label>
-              <label>주소(슬러그) <span className="hint">영문 소문자, 숫자, 하이픈만</span>
-                <input type="text" value={s.slug} onChange={onText('slug')} readOnly={s.published} placeholder="예: adsp-self-study-review" />
+              <label>H1 글 제목 (페이지 맨 위 큰 제목, 1개) {counter(check.ok('h1Kw') ? '키워드 있음' : '키워드 없음', check.ok('h1Kw'))}
+                <input type="text" value={s.h1} onChange={onText('h1')} placeholder="핵심 키워드를 넣어서. 비우면 SEO 타이틀과 같게 들어갑니다" />
               </label>
-              <label>메타 디스크립션 {counter(`${check.descLen}자 / ${RULE.descMin}~${RULE.descMax}`, check.list[1].ok)}
-                <textarea rows={3} value={s.desc} onChange={onText('desc')} placeholder="검색 결과 제목 아래 보이는 요약문, 120~200자" />
+              <label>주소(슬러그) {counter(s.slug ? '/posts/' + s.slug : '필수', check.ok('slug'))}
+                <input type="text" value={s.slug} onChange={onText('slug')} readOnly={s.published} placeholder="영문 소문자, 숫자, 하이픈만. 예: adsp-self-study-review" />
               </label>
               <label>핵심 요약 <span className="hint">한 줄에 하나씩, 3줄 권장</span>
                 <textarea rows={3} value={s.summary} onChange={onText('summary')} />
               </label>
 
               <div className="body-head">
-                <span>본문 {counter(`공백 제외 ${check.bodyLen}자 / ${RULE.bodyMin} 이상`, check.list[2].ok)}</span>
+                <span>본문 {counter(`공백 제외 ${check.bodyLen}자 / ${RULE.bodyMin} 이상`, check.ok('bodyLen'))}</span>
                 <div className="toolbar" role="toolbar" aria-label="본문 서식">
                   {SNIPPETS.map(([k, label, fn]) => <button key={k} type="button" className="abtn sm" onClick={fn}>{label}</button>)}
                 </div>
@@ -489,7 +489,7 @@ export default function AdminApp() {
                 <p>문단과 문단 사이는 빈 줄 하나로 구분합니다.</p>
               </details>
 
-              <h2 className="sub">이미지 {counter(`본문 ${check.usedCount}장 / ${RULE.imgMin} 이상`, check.list[3].ok)}</h2>
+              <h2 className="sub">이미지 {counter(`본문 ${check.usedCount}장 / ${RULE.imgMin} 이상`, check.ok('imgCount'))}</h2>
               <label className={'drop' + (dragOver ? ' over' : '')}
                 onDragEnter={(e) => { e.preventDefault(); setDragOver(true); }}
                 onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
@@ -537,14 +537,22 @@ export default function AdminApp() {
             <aside className="side">
               <section className="panel">
                 <h2 className="sub">SEO 점검 <span id="score">{pass} / {check.list.length} 통과</span></h2>
-                <ul className="checks">
-                  {check.list.map((it) => (
-                    <li key={it.label} className={it.ok ? 'ok' : 'bad'}>
-                      <span className="mark">{it.ok ? 'O' : 'X'}</span>
-                      <span>{it.label}{it.detail && <small>{it.detail}</small>}</span>
-                    </li>
-                  ))}
-                </ul>
+                {CHECK_GROUPS.map((g) => {
+                  const items = check.list.filter((it) => it.group === g);
+                  return (
+                    <div className="check-group" key={g}>
+                      <h3 className="check-head">{g} <small>{items.filter((it) => it.ok).length}/{items.length}</small></h3>
+                      <ul className="checks">
+                        {items.map((it) => (
+                          <li key={it.key} className={it.ok ? 'ok' : 'bad'}>
+                            <span className="mark">{it.ok ? 'O' : 'X'}</span>
+                            <span>{it.label}{it.detail && <small>{it.detail}</small>}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  );
+                })}
               </section>
               <section className="panel actions-panel">
                 <button type="button" className="abtn" onClick={() => setPreview(true)}>미리보기</button>

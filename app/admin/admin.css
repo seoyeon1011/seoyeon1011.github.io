@@ -79,6 +79,9 @@
 .checks .ok .mark { color: var(--accent); }
 .checks .bad .mark { color: #c0392b; }
 .checks small { display: block; color: var(--muted); }
+.check-group + .check-group { margin-top: 12px; }
+.check-head { font-size: 13px; font-weight: 800; margin: 0 0 2px; padding-bottom: 4px; border-bottom: 2px solid var(--line); }
+.check-head small { font-weight: 600; color: var(--muted); margin-left: 4px; }
 #score { font-size: 13px; color: var(--muted); font-weight: 600; }
 .actions-panel { display: grid; gap: 8px; }
 .log { margin: 4px 0 0; padding-left: 18px; font-size: 13px; color: var(--muted); }

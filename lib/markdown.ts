@@ -14,6 +14,11 @@ export interface RenderImage {
 export interface RenderResult {
   html: string;
   h2: number;
+  /** 소제목(H2) 글자 목록. 목차 점검용 */
+  h2Texts: string[];
+  h3: number;
+  /** 첫 H2보다 앞에 나온 H3 개수 (목차 구조 점검용) */
+  h3Orphan: number;
   used: number[];
   text: string;
   firstPara: string;
@@ -57,6 +62,9 @@ export function renderBody(md: string, images: RenderImage[]): RenderResult {
   const used: number[] = [];
   let para: string[] = [];
   let h2 = 0;
+  let h3 = 0;
+  let h3Orphan = 0;
+  const h2Texts: string[] = [];
   let i = 0;
   let firstPara: string | null = null;
   const byNo = (no: number) => images.find((im) => im.no === no);
@@ -87,8 +95,8 @@ export function renderBody(md: string, images: RenderImage[]): RenderResult {
       }
       i++; continue;
     }
-    if ((m = L.match(/^##\s+(.+)/)) && !/^###/.test(L)) { flush(); h2++; out.push('<h2 id="s' + h2 + '">' + inline(m[1].trim()) + '</h2>'); plain.push(m[1]); i++; continue; }
-    if ((m = L.match(/^###\s+(.+)/))) { flush(); out.push('<h3>' + inline(m[1].trim()) + '</h3>'); plain.push(m[1]); i++; continue; }
+    if ((m = L.match(/^##\s+(.+)/)) && !/^###/.test(L)) { flush(); h2++; h2Texts.push(stripLinks(m[1].trim()).replace(/\*\*|`/g, '')); out.push('<h2 id="s' + h2 + '">' + inline(m[1].trim()) + '</h2>'); plain.push(m[1]); i++; continue; }
+    if ((m = L.match(/^###\s+(.+)/))) { flush(); h3++; if (!h2) h3Orphan++; out.push('<h3>' + inline(m[1].trim()) + '</h3>'); plain.push(m[1]); i++; continue; }
     if (/^\s*[-*]\s+/.test(L)) {
       flush();
       const items: string[] = [];
@@ -126,7 +134,7 @@ export function renderBody(md: string, images: RenderImage[]): RenderResult {
   }
   flush();
   const text = stripLinks(plain.join('\n')).replace(/\*\*|`/g, '');
-  return { html: out.join('\n'), h2, used, text, firstPara: stripLinks(firstPara || '') };
+  return { html: out.join('\n'), h2, h2Texts, h3, h3Orphan, used, text, firstPara: stripLinks(firstPara || '') };
 }
 
 // ---------- HTML 본문 도구 ----------

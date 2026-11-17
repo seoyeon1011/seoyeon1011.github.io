@@ -90,3 +90,12 @@ Ref(레프) 콘텐츠·SEO 마케팅 지식창고 사이트. Next.js(App Router,
 클린 볼드 방향(흰 배경, 일렉트릭 블루 포인트 `#3B5BFF`, 라임 형광펜 `#C6F432`, 굵은 큰 제목, 둥근 카드). 색은 모두 `app/globals.css` 맨 위 토큰으로 쓰고, 다크 모드 값도 같은 곳에 있다(기기 설정을 따르되 헤더 버튼으로 바꾼 값은 localStorage `theme` 에 저장). 분류 묶음 색은 `--c-trend`, `--c-knowledge`, `--c-portfolio`, `--c-diary` 이고 `g-묶음` 클래스로 붙인다. 카드 썸네일은 글 JSON의 `thumbnail`, 없으면 본문 첫 이미지, 그것도 없으면 분류 색 카드로 그린다.
 
 카테고리를 새로 만들 때는 `lib/types.ts` 의 `CatSlug`, `lib/site.ts` 의 `CATS` 와 `CAT_ORDER` 두 곳만 고치면 메뉴, 분류 페이지, 필터 버튼, 홈 주제별 보기, 사이트맵, 관리자 분류 선택에 모두 반영된다.
+
+## 포트폴리오 페이지 (/about)
+
+`app/about/page.tsx` 와 전용 스타일 `app/about/portfolio.css`. 블로그 헤더(Shell)를 쓰지 않고 포트폴리오 전용 내비(Work, Idea Lab, Contact)만 둔다. 내용 원본은 Claude Docs "심서연 콘텐츠 마케터 포트폴리오 (Master)" 문서의 "웹 포트폴리오 구조" 탭이다. 글꼴은 숫자·영문까지 Pretendard 하나만 쓰고 세리프는 쓰지 않는다.
+
+- 회사별 버전: `/about?for=db`, `/about?for=univ`. 페이지 맨 위 스크립트가 `<html data-pf>` 를 붙이고, 순서와 문구 전환은 CSS(`data-hide`, `data-show`, `order`)가 한다. 버전을 늘릴 때는 스크립트의 허용 값과 CSS 규칙을 함께 고친다
+- 사진 자리는 `<Ph>` 컴포넌트. 실제 사진은 `public/assets/img/` 에 넣고 `<figure className="pf-figure"><img .../></figure>` 로 바꾼다
+- PDF 다운로드 버튼은 `PDF_URL` 상수가 비어 있으면 나오지 않는다
+- 전화번호는 공개 페이지에 넣지 않는다

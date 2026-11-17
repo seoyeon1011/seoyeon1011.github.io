@@ -20,7 +20,7 @@ export const SITE = {
   owner: 'seoyeon1011',
   repo: 'seoyeon1011.github.io',
   // 소개 페이지를 마지막으로 고친 날 (사이트맵 lastmod)
-  aboutUpdated: '2026-11-05',
+  aboutUpdated: '2026-11-17',
   launched: '2026-11-05',
 } as const;
 

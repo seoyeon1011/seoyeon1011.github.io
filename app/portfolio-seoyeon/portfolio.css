@@ -274,10 +274,23 @@ html[data-pf="univ"] .pf-lab-sajik, html[data-pf="univ"] .pf-side-wish { border-
 @media (max-width: 600px) { .pf-section { padding: 68px 0; } .pf-contact { padding: 76px 0 72px; } }
 
 /* 인쇄(PDF 저장)할 때는 내비와 버튼을 빼고 접힌 상세도 공간만 차지하지 않게 한다 */
+/* 인쇄·PDF: 화면 디자인(배경색)을 그대로 살리고, 데스크톱 폭(1280px)을 A4 비율 페이지에 담는다 */
+@page { size: 1280px 1810px; margin: 0; }
 @media print {
-  .pf-nav, .pf-hero-actions, .pf-contact-btns, .pf-footer { display: none !important; }
-  .pf-dark { background: #fff !important; color: #000 !important; }
-  .pf-hero::before { display: none; }
-  .pf-stats a { color: #000; border-color: #ccc; }
-  .pf-stats strong { color: #000; }
+  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .pf-nav, .pf-hero-actions, .pf-contact-btns, .pf-footer, .pf-lightbox, .skip-link, .pf-details > summary { display: none !important; }
+  .pf-details { border-top: 0; }
+  .pf-card, .pf-tile, .pf-steps > li, .pf-stats li, .pf-detail-row, .pf-strip, .pf-table, .pf-events, .pf-more > div { break-inside: avoid; }
+  .pf-head { break-inside: avoid; break-after: avoid; }
+  /* 실무 케이스, 각 케이스, Idea Lab 은 새 페이지에서 시작 */
+  .pf-work, #idea-lab, .pf-card + .pf-card { break-before: page; }
+  .pf-strip { overflow: visible; flex-wrap: wrap; }
+  .pf-zoom:hover img, .pf-fig-link:hover img { transform: none; }
+  .pf-stats a:hover { transform: none; }
+  /* 인쇄 폭이 좁게 잡혀도 데스크톱 배치를 유지 */
+  .pf-stats, .pf-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pf-card-top { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 32px; }
+  .pf-detail-row { grid-template-columns: 120px minmax(0, 1fr); gap: 20px; }
+  .pf-events, .pf-duo { grid-template-columns: 1fr 1fr; }
+  .pf-more { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 56px; }
 }

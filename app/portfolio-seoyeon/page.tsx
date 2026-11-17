@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: { ...OG_BASE, type: 'profile', title, description: '콘텐츠 마케터 심서연 포트폴리오', url: abs(PF_PATH) },
 };
 
-const VARIANT_SCRIPT = "(function(){try{var v=new URLSearchParams(location.search).get('for');if(v==='db'||v==='univ')document.documentElement.dataset.pf=v;}catch(e){}})();";
+const VARIANT_SCRIPT = "(function(){try{var v=new URLSearchParams(location.search).get('for');if(v==='db'||v==='univ')document.documentElement.dataset.pf=v;}catch(e){}window.addEventListener('beforeprint',function(){document.querySelectorAll('details.pf-details').forEach(function(d){d.open=true;});});})();";
 
 /* ---------- 부품 ---------- */
 
@@ -165,7 +165,7 @@ export default function AboutPage() {
               <li className="pf-stat-sales"><a href="#case-1"><strong>1,500<small>만 원</small></strong><span>유료 광고 0원 굿즈 매출</span></a></li>
               <li className="pf-stat-45"><a href="#case-2"><strong>45<small>%</small></strong><span>신규 등록생 SNS 유입 비중</span></a></li>
               <li className="pf-stat-84" data-hide="db univ"><a href="#case-2"><strong>84<small>%↑</small></strong><span>강사 계정 팔로워 성장률</span></a></li>
-              <li className="pf-stat-reels" data-show="db"><a href="#case-2"><strong>5.6<small>만 회</small></strong><span>최고 조회수 릴스</span></a></li>
+              <li className="pf-stat-reels" data-show="db"><a href="#case-2"><strong>5.6<small>만 회</small></strong><span>학원 강사 계정 최고 조회수 릴스</span></a></li>
               <li className="pf-stat-events" data-show="univ"><a href="#case-3"><strong>450<small>명</small></strong><span>직접 기획한 행사 참여</span></a></li>
             </ul>
 
@@ -240,7 +240,7 @@ export default function AboutPage() {
                 id="case-2" no="02" meta="학원 마케팅 · 2024.01~현재"
                 title="학원을 고르는 건 학부모가 아니었다"
                 summary="실제 결정권자가 학생임을 발견하고, 강사 퍼스널 브랜딩으로 추천 유입 구조를 설계"
-                tags={['재원생 20%↑', '신규 45% SNS 유입', '릴스 5.6만']}
+                tags={['재원생 20%↑', '신규 45% SNS 유입', '누적 조회수 19만']}
                 role="타깃 조사 · 채널 전략 · 릴스 기획·제작"
                 contrib="90%"
                 image={{ src: 'case2-main.jpg', alt: '강사 인스타그램 계정 화면과 5.6만 회 릴스, 누적 조회수 19만' }}
@@ -257,7 +257,7 @@ export default function AboutPage() {
                       </tbody>
                     </table>
                   </Detail>
-                  <Detail k="결과">재원생 100→120명, 신규 20명 중 9명이 강사 인스타로 유입, 팔로워 84%↑, 정규직 전환 제안.</Detail>
+                  <Detail k="결과">재원생 100→120명, 신규 20명 중 9명이 강사 인스타로 유입, 팔로워 84%↑, 강사 계정 릴스 누적 조회수 19만 회(최고 5.6만 회), 정규직 전환 제안.</Detail>
                   <Detail k="배운 점">돈을 내는 사람과 고르는 사람은 다를 수 있고, 친구에게 보여 주고 싶은 콘텐츠가 입소문의 재료가 된다는 것을 배웠습니다. 실무에서도 결제자, 결정자, 추천자를 나눠 채널과 메시지를 따로 설계하고, 신규 고객의 유입 경로를 꼭 확인해 어떤 콘텐츠가 실제 전환을 만들었는지 따져 보겠습니다.</Detail>
                 </dl>
                 <div className="pf-strip pf-strip-wide">

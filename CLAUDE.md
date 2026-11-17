@@ -8,7 +8,7 @@ Ref(레프) 콘텐츠·SEO 마케팅 지식창고 사이트. Next.js(App Router,
 - 사이트 안의 파일명은 날짜를 붙이지 않는다. 글 파일명이 URL이므로 영문 소문자와 하이픈만 쓴다
 - 사용자의 경험, 수치, 점수, 기간, 교재명은 지어내지 않는다. 모르는 부분은 `<div class="todo">[직접 작성] ...</div>` 로 남긴다
 - 시험 기준, 일정처럼 바뀔 수 있는 외부 정보는 공식 출처 확인을 권하는 문장을 함께 쓴다
-- 연락처는 사용자가 직접 공개를 요청한 것만 쓴다 (app/about/page.tsx: 전화, 이메일 s.seoyeon1011@gmail.com, 인스타그램 @ref.yeon, GitHub). 그 밖의 개인정보는 넣지 않는다
+- 연락처는 사용자가 직접 공개를 요청한 것만 쓴다 (이메일 s.seoyeon1011@gmail.com, 인스타그램 @ref.yeon, GitHub. 전화번호는 공개 페이지에 넣지 않는다). 그 밖의 개인정보는 넣지 않는다
 
 ## 명령
 
@@ -91,12 +91,18 @@ Ref(레프) 콘텐츠·SEO 마케팅 지식창고 사이트. Next.js(App Router,
 
 카테고리를 새로 만들 때는 `lib/types.ts` 의 `CatSlug`, `lib/site.ts` 의 `CATS` 와 `CAT_ORDER` 두 곳만 고치면 메뉴, 분류 페이지, 필터 버튼, 홈 주제별 보기, 사이트맵, 관리자 분류 선택에 모두 반영된다.
 
-## 포트폴리오 페이지 (/about)
+## 포트폴리오 페이지 (비공개 주소)
 
-`app/about/page.tsx` 와 전용 스타일 `app/about/portfolio.css`. 블로그 헤더(Shell)를 쓰지 않고 포트폴리오 전용 내비(Work, Idea Lab, Contact)만 둔다. 내용 원본은 Claude Docs "심서연 콘텐츠 마케터 포트폴리오 (Master)" 문서의 "웹 포트폴리오 구조" 탭이다. 글꼴은 숫자·영문까지 Pretendard 하나만 쓰고 세리프는 쓰지 않는다.
+포트폴리오는 링크를 공유받은 사람만 본다. 공개 주소 `/about`(`app/about/page.tsx`)은 열람 요청 안내 페이지로, 이메일·인스타그램으로 연락하면 링크를 보내 준다는 문구만 둔다. 포트폴리오 본문은 추측하기 어려운 주소 `app/pf-j6mweaudm6/` 에 있다.
 
-- 회사별 버전: `/about?for=db`, `/about?for=univ`. 페이지 맨 위 스크립트가 `<html data-pf>` 를 붙이고, 순서와 문구 전환은 CSS(`data-hide`, `data-show`, `order`)가 한다. 버전을 늘릴 때는 스크립트의 허용 값과 CSS 규칙을 함께 고친다
-- 사진은 `public/assets/img/portfolio/` 에 두고 `<Fig src alt ratio>` 로 넣는다. 누르면 `app/about/Lightbox.tsx` 가 확대 팝업을 띄운다. `href` 를 주면 확대 대신 외부 링크로 연다(Case 03 밈 릴스 → 인스타그램). 사진이 아직 없는 자리는 `<Ph>` 로 표시한다
+- 비공개 주소는 사이트 메뉴, 푸터, 글 본문, `/about`, 사이트맵, robots.txt 어디에도 적지 않는다. 페이지에는 noindex, nofollow 가 붙어 있다
+- 주소를 바꿀 때는 폴더 이름과 그 안 page.tsx 의 `PF_PATH` 를 함께 고친다. 바꾸면 예전에 보낸 링크는 열리지 않는다
+- 정적 사이트라 진짜 비밀번호 잠금은 아니다. 주소를 아는 사람은 누구나 볼 수 있고, 저장소가 공개면 폴더 이름으로 주소가 드러난다
+
+`app/pf-j6mweaudm6/page.tsx` 와 전용 스타일 `portfolio.css`. 블로그 헤더(Shell)를 쓰지 않고 포트폴리오 전용 내비(Work, Idea Lab, Contact)만 둔다. 내용 원본은 Claude Docs "심서연 콘텐츠 마케터 포트폴리오 (Master)" 문서의 "웹 포트폴리오 구조" 탭이다. 글꼴은 숫자·영문까지 Pretendard 하나만 쓰고 세리프는 쓰지 않는다.
+
+- 회사별 버전: `/pf-j6mweaudm6?for=db`, `/pf-j6mweaudm6?for=univ`. 페이지 맨 위 스크립트가 `<html data-pf>` 를 붙이고, 순서와 문구 전환은 CSS(`data-hide`, `data-show`, `order`)가 한다. 버전을 늘릴 때는 스크립트의 허용 값과 CSS 규칙을 함께 고친다
+- 사진은 `public/assets/img/portfolio/` 에 두고 `<Fig src alt ratio>` 로 넣는다. 누르면 `Lightbox.tsx` 가 확대 팝업을 띄운다. `href` 를 주면 확대 대신 외부 링크로 연다(Case 03 밈 릴스 → 인스타그램). 사진이 아직 없는 자리는 `<Ph>` 로 표시한다
 - 사진은 JPG(품질 86 안팎) 위주로 한 장 300KB 이하를 유지한다
 - PDF 다운로드 버튼은 `PDF_URL` 상수가 비어 있으면 나오지 않는다
 - 전화번호는 공개 페이지에 넣지 않는다

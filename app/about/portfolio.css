@@ -14,6 +14,8 @@
   --pf-light-tint: color-mix(in srgb, var(--accent) 7%, var(--bg));
   overflow-x: clip;
 }
+/* 숫자·영문·한글 모두 Pretendard 한 가지만 쓴다 (세리프 금지) */
+.pf, .pf * { font-family: var(--font); font-style: normal; }
 .pf .wrap { max-width: 1120px; }
 .pf-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 

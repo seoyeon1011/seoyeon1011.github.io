@@ -390,7 +390,8 @@ export default function AboutPage() {
         <section className="pf-contact pf-dark" id="contact" aria-labelledby="pf-contact-title">
           <div className="wrap">
             <p className="pf-eyebrow">Contact</p>
-            <h2 id="pf-contact-title">함께 이야기 나눠요</h2>
+            <h2 id="pf-contact-title">끝까지 봐 주셔서 감사합니다</h2>
+            <p className="pf-contact-lead">궁금하신 점이나 함께 이야기 나누고 싶은 부분이 있으시면 편하게 연락 주세요.<br />확인하는 대로 정성껏 답변드리겠습니다.</p>
             <div className="pf-contact-btns">
               <a className="pf-btn pf-btn-primary" href="mailto:s.seoyeon1011@gmail.com">이메일 보내기</a>
               <a className="pf-btn pf-btn-ghost" href="https://www.instagram.com/ref.yeon/" rel="me noopener" target="_blank">인스타그램</a>

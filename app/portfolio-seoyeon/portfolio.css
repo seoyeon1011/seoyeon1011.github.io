@@ -261,6 +261,7 @@ html[data-pf="univ"] .pf-lab-sajik, html[data-pf="univ"] .pf-side-wish { border-
     #000;
 }
 .pf-contact h2 { margin: 0; font-size: clamp(30px, 4.6vw, 52px); letter-spacing: -.05em; font-weight: 800; line-height: 1.2; }
+.pf-contact-lead { margin: 16px 0 0; max-width: 640px; font-size: clamp(15px, 1.6vw, 17px); line-height: 1.7; color: var(--pf-on-dark-muted); }
 .pf-contact-btns { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 10px; }
 .pf-contact-mail { margin: 22px 0 0; color: var(--pf-on-dark-muted); font-size: 15px; }
 

@@ -93,15 +93,15 @@ Ref(레프) 콘텐츠·SEO 마케팅 지식창고 사이트. Next.js(App Router,
 
 ## 포트폴리오 페이지 (비공개 주소)
 
-포트폴리오는 링크를 공유받은 사람만 본다. 공개 주소 `/about`(`app/about/page.tsx`)은 열람 요청 안내 페이지로, 이메일·인스타그램으로 연락하면 링크를 보내 준다는 문구만 둔다. 포트폴리오 본문은 추측하기 어려운 주소 `app/pf-j6mweaudm6/` 에 있다.
+포트폴리오는 링크를 공유받은 사람만 본다. 공개 주소 `/about`(`app/about/page.tsx`)은 열람 요청 안내 페이지로, 이메일·인스타그램으로 연락하면 링크를 보내 준다는 문구만 둔다. 포트폴리오 본문은 별도 주소 `app/portfolio-seoyeon/` 에 있다.
 
 - 비공개 주소는 사이트 메뉴, 푸터, 글 본문, `/about`, 사이트맵, robots.txt 어디에도 적지 않는다. 페이지에는 noindex, nofollow 가 붙어 있다
 - 주소를 바꿀 때는 폴더 이름과 그 안 page.tsx 의 `PF_PATH` 를 함께 고친다. 바꾸면 예전에 보낸 링크는 열리지 않는다
 - 정적 사이트라 진짜 비밀번호 잠금은 아니다. 주소를 아는 사람은 누구나 볼 수 있고, 저장소가 공개면 폴더 이름으로 주소가 드러난다
 
-`app/pf-j6mweaudm6/page.tsx` 와 전용 스타일 `portfolio.css`. 블로그 헤더(Shell)를 쓰지 않고 포트폴리오 전용 내비(Work, Idea Lab, Contact)만 둔다. 내용 원본은 Claude Docs "심서연 콘텐츠 마케터 포트폴리오 (Master)" 문서의 "웹 포트폴리오 구조" 탭이다. 글꼴은 숫자·영문까지 Pretendard 하나만 쓰고 세리프는 쓰지 않는다.
+`app/portfolio-seoyeon/page.tsx` 와 전용 스타일 `portfolio.css`. 블로그 헤더(Shell)를 쓰지 않고 포트폴리오 전용 내비(Work, Idea Lab, Contact)만 둔다. 내용 원본은 Claude Docs "심서연 콘텐츠 마케터 포트폴리오 (Master)" 문서의 "웹 포트폴리오 구조" 탭이다. 글꼴은 숫자·영문까지 Pretendard 하나만 쓰고 세리프는 쓰지 않는다.
 
-- 회사별 버전: `/pf-j6mweaudm6?for=db`, `/pf-j6mweaudm6?for=univ`. 페이지 맨 위 스크립트가 `<html data-pf>` 를 붙이고, 순서와 문구 전환은 CSS(`data-hide`, `data-show`, `order`)가 한다. 버전을 늘릴 때는 스크립트의 허용 값과 CSS 규칙을 함께 고친다
+- 회사별 버전: `/portfolio-seoyeon?for=db`, `/portfolio-seoyeon?for=univ`. 페이지 맨 위 스크립트가 `<html data-pf>` 를 붙이고, 순서와 문구 전환은 CSS(`data-hide`, `data-show`, `order`)가 한다. 버전을 늘릴 때는 스크립트의 허용 값과 CSS 규칙을 함께 고친다
 - 사진은 `public/assets/img/portfolio/` 에 두고 `<Fig src alt ratio>` 로 넣는다. 누르면 `Lightbox.tsx` 가 확대 팝업을 띄운다. `href` 를 주면 확대 대신 외부 링크로 연다(Case 03 밈 릴스 → 인스타그램). 사진이 아직 없는 자리는 `<Ph>` 로 표시한다
 - 사진은 JPG(품질 86 안팎) 위주로 한 장 300KB 이하를 유지한다
 - PDF 다운로드 버튼은 `PDF_URL` 상수가 비어 있으면 나오지 않는다

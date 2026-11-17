@@ -22,7 +22,7 @@ import './portfolio.css';
 const PDF_URL = '';
 
 const title = '포트폴리오 | 콘텐츠 마케터 심서연';
-const description = '진짜 결정권자를 찾아 공유되는 콘텐츠로 구매까지 연결하는 콘텐츠 마케터 심서연의 포트폴리오입니다. 광고비 0원 굿즈 매출 1,500만 원, 신규 등록 45% SNS 유입, 강사 계정 팔로워 84% 성장 사례를 담았습니다.';
+const description = '공유되는 콘텐츠로 구매까지 연결하는 콘텐츠 마케터 심서연의 포트폴리오입니다. 광고비 0원 굿즈 매출 1,500만 원, 신규 등록 45% SNS 유입, 강사 계정 팔로워 84% 성장 사례를 담았습니다.';
 
 // 링크를 받은 사람만 보는 비공개 주소. 검색 제외, 사이트맵·사이트 메뉴에 넣지 않는다.
 // 주소를 바꾸려면 이 폴더 이름과 PF_PATH 를 함께 고친다.
@@ -156,7 +156,7 @@ export default function AboutPage() {
             <h1 id="pf-hero-title" className="pf-hero-title">
               <span className="pf-hero-word">SPARK:CLING</span>
               <span className="pf-hero-mean"><b>SPARK</b> 번뜩이는 아이디어로 시작하고, <b>CLING</b> 성과가 날 때까지 끝까지 붙잡습니다.</span>
-              <span className="pf-hero-sub" data-hide="db univ">진짜 결정권자를 찾아,<br />공유되는 콘텐츠로 구매까지 연결하는 마케터, 심서연입니다.</span>
+              <span className="pf-hero-sub" data-hide="db univ">공유되는 콘텐츠로 구매까지 연결하는 마케터, 심서연입니다.</span>
               <span className="pf-hero-sub" data-show="db">어려운 정보를 체감 언어로 바꿔,<br />행동까지 연결하는 마케터, 심서연입니다.</span>
               <span className="pf-hero-sub" data-show="univ">대학생만 아는 언어로,<br />온라인과 현장을 함께 움직이는 마케터, 심서연입니다.</span>
             </h1>

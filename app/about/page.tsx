@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import type { CSSProperties, ReactNode } from 'react';
 import JsonLd from '@/components/JsonLd';
 import ThemeToggle from '@/components/ThemeToggle';
+import Lightbox from './Lightbox';
 import { OG_BASE, SITE, abs } from '@/lib/site';
 import './portfolio.css';
 
@@ -13,7 +14,8 @@ import './portfolio.css';
 //   아래 VARIANT_SCRIPT 가 주소의 for 값을 <html data-pf="..."> 로 옮기고, 순서와 문구 전환은 portfolio.css 가 한다.
 //   data-hide="db univ" : 그 버전에서 숨김 / data-show="db" : 그 버전에서만 보임
 //
-// 사진 자리는 <Ph> 로 표시한다. 실제 사진은 <figure className="pf-figure"><img src="/assets/img/..." alt="..." /></figure> 로 바꾼다.
+// 사진은 <Fig> (public/assets/img/portfolio/). 누르면 Lightbox.tsx 가 확대 팝업을 띄우고, href 를 주면 외부 링크로 연다.
+// 아직 사진이 없는 자리는 <Ph> 로 표시한다.
 // 연락처는 사용자가 공개를 요청한 것만 쓴다 (CLAUDE.md). 구조안에 따라 전화번호는 공개 페이지에서 뺐다.
 
 /** PDF 포트폴리오 파일 주소. 파일을 public/ 에 넣고 경로를 적으면 히어로와 연락처에 다운로드 버튼이 생긴다 (예: '/portfolio-simseoyeon.pdf') */
@@ -42,6 +44,27 @@ function Ph({ label, ratio = '16 / 9' }: { label: string; ratio?: string }) {
   );
 }
 
+const IMG = '/assets/img/portfolio/';
+
+/** 사진. 누르면 Lightbox 가 크게 띄운다. href 를 주면 확대 대신 그 주소(예: 인스타그램 릴스)로 이동한다 */
+function Fig({ src, alt, ratio = '16 / 9', href, linkLabel }: { src: string; alt: string; ratio?: string; href?: string; linkLabel?: string }) {
+  const image = <img src={IMG + src} alt={alt} loading="lazy" decoding="async" />;
+  return (
+    <figure className="pf-figure" style={{ aspectRatio: ratio } as CSSProperties}>
+      {href ? (
+        <a className="pf-fig-link" href={href} target="_blank" rel="noopener" aria-label={`${linkLabel ?? '링크 열기'}: ${alt}`}>
+          {image}
+          <span className="pf-fig-badge">{linkLabel ?? '보기'} ↗</span>
+        </a>
+      ) : (
+        <button type="button" className="pf-zoom" data-zoom aria-label={`크게 보기: ${alt}`}>
+          {image}
+        </button>
+      )}
+    </figure>
+  );
+}
+
 function Detail({ k, children }: { k: string; children: ReactNode }) {
   return <div className="pf-detail-row"><dt>{k}</dt><dd>{children}</dd></div>;
 }
@@ -55,7 +78,7 @@ interface CaseProps {
   tags: string[];
   role: string;
   contrib: string;
-  image: { label: string; ratio?: string };
+  image: { src: string; alt: string };
   children: ReactNode;
 }
 
@@ -67,7 +90,7 @@ function CaseCard({ id, no, meta, title, summary, tags, role, contrib, image, ch
         <p className="pf-contrib">기여도 <b>{contrib}</b></p>
       </div>
       <div className="pf-card-top">
-        <Ph label={image.label} ratio={image.ratio} />
+        <Fig src={image.src} alt={image.alt} />
         <div className="pf-card-text">
           <h3 id={`${id}-title`}>{title}</h3>
           <p className="pf-card-sum">{summary}</p>
@@ -193,7 +216,7 @@ export default function AboutPage() {
                 tags={['매출 1,500만 원', '판매율 100%', '유료 광고비 0원']}
                 role="콘셉트 제안 · 런칭 카피 · 판매 둔화 시 전략 전환"
                 contrib="90%"
-                image={{ label: '클리커와 수강신청 화면 나란히' }}
+                image={{ src: 'case1-main.jpg', alt: '수강신청 사이트의 신청 버튼과 확정하기 클리커를 나란히 놓은 비교 이미지' }}
               >
                 <dl className="pf-detail">
                   <Detail k="문제와 인사이트">2일간 3,000개 판매가 목표였으나, 시중 클리커는 디자인 차별점이 없었습니다. 방문객의 90% 이상이 재학생이라는 점에 주목해, 학내 구성원만 공유하는 IP인 수강신청 사이트의 <strong>확정하기</strong> 버튼을 굿즈로 기획했습니다.</Detail>
@@ -202,10 +225,9 @@ export default function AboutPage() {
                   <Detail k="배운 점">사람들은 물건보다 <strong>우리끼리 아는 이야기</strong>에 지갑을 연다는 것을 배웠습니다. 실무에서는 기획 초기에 타깃만 아는 순간과 단어를 먼저 모아 콘셉트의 재료로 쓰고, 런칭 첫날의 판매와 반응을 기준선으로 잡아 둔화되면 그날 바로 접점과 콘텐츠를 바꾸겠습니다.</Detail>
                 </dl>
                 <div className="pf-strip">
-                  <Ph label="클리커 실물 사진" ratio="4 / 5" />
-                  <Ph label="런칭 게시물" ratio="4 / 5" />
-                  <Ph label="밈 카드뉴스" ratio="4 / 5" />
-                  <Ph label="현장 부스 사진" ratio="4 / 5" />
+                  <Fig src="case1-clicker.jpg" alt="손에 든 확정하기 클리커, CSSD(CNU Smart SuGang Device) 소개 이미지" ratio="4 / 5" />
+                  <Fig src="case1-launch.jpg" alt="가방에 쏙 들어가는 컴팩트 사이즈를 보여 주는 런칭 게시물" ratio="4 / 5" />
+                  <Fig src="case1-meme.jpg" alt="수강신청 중독 진료 장면을 패러디한 밈 카드뉴스" ratio="4 / 5" />
                 </div>
               </CaseCard>
 
@@ -216,7 +238,7 @@ export default function AboutPage() {
                 tags={['재원생 20%↑', '신규 45% SNS 유입', '릴스 5.6만']}
                 role="타깃 조사 · 채널 전략 · 릴스 기획·제작"
                 contrib="90%"
-                image={{ label: '5.6만 회 릴스 캡처' }}
+                image={{ src: 'case2-main.jpg', alt: '강사 인스타그램 계정 화면과 5.6만 회 릴스, 누적 조회수 19만' }}
               >
                 <dl className="pf-detail">
                   <Detail k="문제와 인사이트">결제는 학부모가 하지만, 학군 조사 결과 학원을 고르는 건 학생이었고 친구 추천으로 정했습니다.</Detail>
@@ -233,10 +255,8 @@ export default function AboutPage() {
                   <Detail k="결과">재원생 100→120명, 신규 20명 중 9명이 강사 인스타로 유입, 팔로워 84%↑, 정규직 전환 제안.</Detail>
                   <Detail k="배운 점">돈을 내는 사람과 고르는 사람은 다를 수 있고, 친구에게 보여 주고 싶은 콘텐츠가 입소문의 재료가 된다는 것을 배웠습니다. 실무에서도 결제자, 결정자, 추천자를 나눠 채널과 메시지를 따로 설계하고, 신규 고객의 유입 경로를 꼭 확인해 어떤 콘텐츠가 실제 전환을 만들었는지 따져 보겠습니다.</Detail>
                 </dl>
-                <div className="pf-strip">
-                  <Ph label="강사 계정 프로필" ratio="9 / 16" />
-                  <Ph label="강사 굿즈 사진" ratio="9 / 16" />
-                  <Ph label="인스타그램 인사이트 화면" ratio="9 / 16" />
+                <div className="pf-strip pf-strip-wide">
+                  <Fig src="case2-cover.jpg" alt="강사 브랜딩 굿즈, 벨라영어 교재 커버" ratio="80 / 33" />
                 </div>
               </CaseCard>
 
@@ -247,7 +267,7 @@ export default function AboutPage() {
                 tags={['컴플레인 0건', '팔로워 4,150', '행사 만족도 4.9']}
                 role="CS 체계 설계 · SNS 총괄 · 행사 기획"
                 contrib="100%"
-                image={{ label: 'Before/After 문의 창구' }}
+                image={{ src: 'case3-main.png', alt: '문의 창구 Before/After: 답변 없는 DM이 컴플레인으로 이어지던 상태에서 노션 CS 관리 체계 도입 후 컴플레인 0건' }}
               >
                 <dl className="pf-detail">
                   <Detail k="문제">DM 응대가 없어 컴플레인이 쌓이고 있었습니다.</Detail>
@@ -269,10 +289,10 @@ export default function AboutPage() {
                   <Detail k="배운 점">콘텐츠의 성과는 문의, 참여, 재방문까지 이어질 때 완성된다는 것을 배웠습니다. 실무에서는 캠페인을 열기 전에 문의 창구와 FAQ부터 준비하고, 쌓인 반복 문의를 다음 콘텐츠의 주제로 되돌려 쓰겠습니다.</Detail>
                 </dl>
                 <div className="pf-strip">
-                  <Ph label="카카오톡 채널 화면" ratio="4 / 5" />
-                  <Ph label="노션 FAQ 화면 (개인정보 가림)" ratio="4 / 5" />
-                  <Ph label="7.1만 회 밈 릴스 캡처" ratio="4 / 5" />
-                  <Ph label="수영대회 현장 사진" ratio="4 / 5" />
+                  <Fig src="case3-kakao.jpg" alt="CNU SPOREX 카카오톡 채널 화면" ratio="4 / 5" />
+                  <Fig src="case3-faq.png" alt="노션 FAQ 페이지 화면 (세부 내용은 가림 처리)" ratio="4 / 5" />
+                  <Fig src="case3-reel.jpg" alt="CNU SPOREX 눈동자 챌린지 밈 릴스" ratio="4 / 5" href="https://www.instagram.com/reel/DWp1Bs9D55j/" linkLabel="릴스 보기" />
+                  <Fig src="case3-shoot.jpg" alt="수영장 콘텐츠 촬영 현장" ratio="4 / 5" />
                 </div>
               </CaseCard>
             </div>
@@ -289,7 +309,7 @@ export default function AboutPage() {
             </div>
             <div className="pf-duo pf-lab">
               <article className="pf-tile pf-lab-cass">
-                <Ph label="알코올 함유량 비교 장표" ratio="16 / 10" />
+                <Fig src="lab-cass.jpg" alt="카스 0.0 캠페인 전략 장표: 알코올 함유량을 간장, 고추장, 식빵과 비교" ratio="16 / 10" />
                 <div className="pf-tile-body">
                   <p className="pf-tile-meta">오비맥주 공모전 출품 · 4인 팀<span className="pf-contrib">기여도 <b>40%</b></span></p>
                   <h3>카스 0.0 「ㅋㅅㅇㅇ」</h3>
@@ -298,7 +318,7 @@ export default function AboutPage() {
                 </div>
               </article>
               <article className="pf-tile pf-lab-sajik">
-                <Ph label="사!직이네 메인 보드" ratio="16 / 10" />
+                <Fig src="lab-sajik.jpg" alt="롯데 자이언츠 사!직이네 캠페인 메인 보드" ratio="16 / 10" />
                 <div className="pf-tile-body">
                   <p className="pf-tile-meta">대홍기획 공모전 출품<span className="pf-contrib">기여도 <b>30%</b></span></p>
                   <h3>롯데 자이언츠 「사!직이네」</h3>
@@ -320,7 +340,7 @@ export default function AboutPage() {
             </div>
             <div className="pf-duo pf-side">
               <article className="pf-tile pf-tile-sm pf-side-ref">
-                <Ph label="Ref 사이트 화면" ratio="16 / 9" />
+                <Fig src="side-ref.png" alt="Ref 사이트 첫 화면" ratio="16 / 10" />
                 <div className="pf-tile-body">
                   <h3>Ref · AI로 설계한 콘텐츠 마케팅 파이프라인</h3>
                   <p>직접 만든 Claude Code 스킬이 매일 아침 트렌드와 SEO 이슈를 슬랙으로 브리핑하고, 이를 토대로 SEO 콘텐츠를 기획·발행합니다. 트렌드 수집, 블로그 작성, 성과 분석, 주간 리포트까지 업무 단계별 스킬 11개를 AI로 직접 설계해 운영하고 있습니다.</p>
@@ -328,7 +348,7 @@ export default function AboutPage() {
                 </div>
               </article>
               <article className="pf-tile pf-tile-sm pf-side-wish">
-                <Ph label="영탑지 소원연못 사이트 화면" ratio="16 / 9" />
+                <Fig src="side-wish.jpg" alt="영탑지 소원연못 3D 웹사이트 화면" ratio="16 / 10" />
                 <div className="pf-tile-body">
                   <h3>영탑지 소원연못</h3>
                   <p>온라인 절 트렌드를 충남대 영탑지로 옮긴 3D 웹사이트. 시즌에 맞춰 재런칭을 준비하고 있습니다.</p>
@@ -383,6 +403,7 @@ export default function AboutPage() {
           <a href="/">Ref 블로그 보기 →</a>
         </div>
       </footer>
+      <Lightbox />
     </>
   );
 }

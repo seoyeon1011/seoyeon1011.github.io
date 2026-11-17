@@ -96,6 +96,7 @@ Ref(레프) 콘텐츠·SEO 마케팅 지식창고 사이트. Next.js(App Router,
 `app/about/page.tsx` 와 전용 스타일 `app/about/portfolio.css`. 블로그 헤더(Shell)를 쓰지 않고 포트폴리오 전용 내비(Work, Idea Lab, Contact)만 둔다. 내용 원본은 Claude Docs "심서연 콘텐츠 마케터 포트폴리오 (Master)" 문서의 "웹 포트폴리오 구조" 탭이다. 글꼴은 숫자·영문까지 Pretendard 하나만 쓰고 세리프는 쓰지 않는다.
 
 - 회사별 버전: `/about?for=db`, `/about?for=univ`. 페이지 맨 위 스크립트가 `<html data-pf>` 를 붙이고, 순서와 문구 전환은 CSS(`data-hide`, `data-show`, `order`)가 한다. 버전을 늘릴 때는 스크립트의 허용 값과 CSS 규칙을 함께 고친다
-- 사진 자리는 `<Ph>` 컴포넌트. 실제 사진은 `public/assets/img/` 에 넣고 `<figure className="pf-figure"><img .../></figure>` 로 바꾼다
+- 사진은 `public/assets/img/portfolio/` 에 두고 `<Fig src alt ratio>` 로 넣는다. 누르면 `app/about/Lightbox.tsx` 가 확대 팝업을 띄운다. `href` 를 주면 확대 대신 외부 링크로 연다(Case 03 밈 릴스 → 인스타그램). 사진이 아직 없는 자리는 `<Ph>` 로 표시한다
+- 사진은 JPG(품질 86 안팎) 위주로 한 장 300KB 이하를 유지한다
 - PDF 다운로드 버튼은 `PDF_URL` 상수가 비어 있으면 나오지 않는다
 - 전화번호는 공개 페이지에 넣지 않는다

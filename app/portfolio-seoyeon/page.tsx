@@ -19,7 +19,7 @@ import './portfolio.css';
 // 연락처는 사용자가 공개를 요청한 것만 쓴다 (CLAUDE.md). 구조안에 따라 전화번호는 공개 페이지에서 뺐다.
 
 /** PDF 포트폴리오 파일 주소. 파일을 public/ 에 넣고 경로를 적으면 히어로와 연락처에 다운로드 버튼이 생긴다 (예: '/portfolio-simseoyeon.pdf') */
-const PDF_URL = '';
+const PDF_URL = '/portfolio-seoyeon.pdf';
 
 const title = '포트폴리오 | 콘텐츠 마케터 심서연';
 const description = '공유되는 콘텐츠로 구매까지 연결하는 콘텐츠 마케터 심서연의 포트폴리오입니다. 광고비 0원 굿즈 매출 1,500만 원, 신규 등록 45% SNS 유입, 강사 계정 팔로워 84% 성장 사례를 담았습니다.';
@@ -171,7 +171,7 @@ export default function AboutPage() {
 
             <div className="pf-hero-actions">
               <a className="pf-btn pf-btn-primary" href="#work">케이스 보기 ↓</a>
-              {PDF_URL && <a className="pf-btn pf-btn-ghost" href={PDF_URL} download>PDF 다운로드</a>}
+              {PDF_URL && <a className="pf-btn pf-btn-ghost" href={PDF_URL} download="심서연_포트폴리오.pdf">PDF 다운로드</a>}
             </div>
           </div>
         </section>
@@ -395,7 +395,7 @@ export default function AboutPage() {
             <div className="pf-contact-btns">
               <a className="pf-btn pf-btn-primary" href="mailto:s.seoyeon1011@gmail.com">이메일 보내기</a>
               <a className="pf-btn pf-btn-ghost" href="https://www.instagram.com/ref.yeon/" rel="me noopener" target="_blank">인스타그램</a>
-              {PDF_URL && <a className="pf-btn pf-btn-ghost" href={PDF_URL} download>PDF 포트폴리오</a>}
+              {PDF_URL && <a className="pf-btn pf-btn-ghost" href={PDF_URL} download="심서연_포트폴리오.pdf">PDF 다운로드</a>}
               <a className="pf-btn pf-btn-ghost" href="/">Ref 블로그</a>
             </div>
             <p className="pf-contact-mail">s.seoyeon1011@gmail.com</p>

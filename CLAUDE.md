@@ -104,5 +104,5 @@ Ref(레프) 콘텐츠·SEO 마케팅 지식창고 사이트. Next.js(App Router,
 - 회사별 버전: `/portfolio-seoyeon?for=db`, `/portfolio-seoyeon?for=univ`. 페이지 맨 위 스크립트가 `<html data-pf>` 를 붙이고, 순서와 문구 전환은 CSS(`data-hide`, `data-show`, `order`)가 한다. 버전을 늘릴 때는 스크립트의 허용 값과 CSS 규칙을 함께 고친다
 - 사진은 `public/assets/img/portfolio/` 에 두고 `<Fig src alt ratio>` 로 넣는다. 누르면 `Lightbox.tsx` 가 확대 팝업을 띄운다. `href` 를 주면 확대 대신 외부 링크로 연다(Case 03 밈 릴스 → 인스타그램). 사진이 아직 없는 자리는 `<Ph>` 로 표시한다
 - 사진은 JPG(품질 86 안팎) 위주로 한 장 300KB 이하를 유지한다
-- PDF 다운로드 버튼은 `PDF_URL` 상수가 비어 있으면 나오지 않는다
+- PDF 다운로드 버튼은 `PDF_URL` 상수가 가리키는 `public/portfolio-seoyeon.pdf` 를 내려받게 한다(비우면 버튼이 사라진다). 포트폴리오 내용을 고치면 PDF도 다시 만들어 교체한다: 빌드한 페이지를 펼침(details open) 상태로 Edge `--print-to-pdf` 로 인쇄한다. 인쇄 스타일은 portfolio.css 맨 아래 `@media print`
 - 전화번호는 공개 페이지에 넣지 않는다

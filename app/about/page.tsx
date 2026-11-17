@@ -285,13 +285,13 @@ export default function AboutPage() {
                       <li><b>200명</b>재학생 중간고사 이벤트<small>자체 기획 · 만족도 4.9/5</small></li>
                     </ul>
                   </Detail>
-                  <Detail k="결과">문의 컴플레인 0건, 팔로워 2,000명대→4,150명, 밈 릴스 7.1만 회, 수영 규칙 영상 1.1만 회.</Detail>
+                  <Detail k="결과">문의 컴플레인 0건, 팔로워 2,000명대→4,150명, 밈 릴스 7.3만 회, 수영 규칙 영상 1.1만 회.</Detail>
                   <Detail k="배운 점">콘텐츠의 성과는 문의, 참여, 재방문까지 이어질 때 완성된다는 것을 배웠습니다. 실무에서는 캠페인을 열기 전에 문의 창구와 FAQ부터 준비하고, 쌓인 반복 문의를 다음 콘텐츠의 주제로 되돌려 쓰겠습니다.</Detail>
                 </dl>
                 <div className="pf-strip">
                   <Fig src="case3-kakao.jpg" alt="CNU SPOREX 카카오톡 채널 화면" ratio="4 / 5" />
                   <Fig src="case3-faq.png" alt="노션 FAQ 페이지 화면 (세부 내용은 가림 처리)" ratio="4 / 5" />
-                  <Fig src="case3-reel.jpg" alt="CNU SPOREX 눈동자 챌린지 밈 릴스" ratio="4 / 5" href="https://www.instagram.com/reel/DWp1Bs9D55j/" linkLabel="릴스 보기" />
+                  <Fig src="case3-reel.jpg" alt="조회수 7.3만 회 CNU SPOREX 눈동자 챌린지 밈 릴스" ratio="4 / 5" href="https://www.instagram.com/reel/DWp1Bs9D55j/" linkLabel="릴스 보기" />
                   <Fig src="case3-shoot.jpg" alt="수영장 콘텐츠 촬영 현장" ratio="4 / 5" />
                 </div>
               </CaseCard>

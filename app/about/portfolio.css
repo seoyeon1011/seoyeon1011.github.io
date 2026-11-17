@@ -11,7 +11,6 @@
   --pf-on-dark: #f3f6ff;
   --pf-on-dark-muted: rgba(226, 233, 255, .66);
   --pf-hair: rgba(226, 233, 255, .28);
-  --pf-serif: var(--pf-display), "Bodoni 72", Didot, "Times New Roman", serif;
   --pf-light-tint: color-mix(in srgb, var(--accent) 7%, var(--bg));
   overflow-x: clip;
 }
@@ -32,9 +31,9 @@
 
 .pf-kicker, .pf-cover-kicker {
   display: flex; align-items: center; gap: 18px; margin: 0;
-  font-size: 12px; letter-spacing: .32em; text-transform: uppercase; color: var(--pf-on-dark-muted); font-weight: 500;
+  font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--pf-on-dark-muted); font-weight: 700;
 }
-.pf-kicker i, .pf-cover-kicker i { display: block; width: 120px; height: 1px; background: var(--pf-hair); }
+.pf-kicker i, .pf-cover-kicker i { display: block; width: 56px; height: 1px; background: var(--pf-hair); }
 
 /* ---------- 표지 ---------- */
 .pf-hero { padding: 96px 0 56px; min-height: min(88vh, 860px); display: flex; align-items: stretch; }
@@ -53,24 +52,23 @@
 }
 .pf-hero-title { margin: auto 0 0; padding-top: 72px; font-weight: 400; }
 .pf-hero-en {
-  display: block; font-family: var(--pf-serif); font-weight: 400; text-transform: uppercase;
-  font-size: clamp(54px, 11.5vw, 156px); line-height: .9; letter-spacing: -.02em;
-  background: linear-gradient(180deg, #ffffff 30%, #c9d6ff 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+  display: block; font-weight: 800; text-transform: uppercase; color: #fff;
+  font-size: clamp(46px, 9.6vw, 132px); line-height: .98; letter-spacing: -.055em;
 }
 .pf-hero-ko { display: block; margin-top: 28px; font-size: clamp(20px, 2.4vw, 26px); font-weight: 700; letter-spacing: -.02em; color: var(--pf-on-dark); }
 .pf-hero-lead { margin: 14px 0 0; max-width: 560px; font-size: 17px; line-height: 1.8; color: var(--pf-on-dark-muted); }
 .pf-hero-foot { margin-top: 56px; display: flex; flex-direction: column; gap: 22px; }
 .pf-hero-foot i { display: block; width: 1px; height: 120px; background: var(--pf-hair); }
-.pf-hero-foot ul { list-style: none; margin: 0; padding: 0; font-size: 12px; letter-spacing: .32em; text-transform: uppercase; color: var(--pf-on-dark-muted); line-height: 2; }
+.pf-hero-foot ul { list-style: none; margin: 0; padding: 0; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--pf-on-dark-muted); line-height: 2; }
 
 /* ---------- 숫자 3개 ---------- */
 .pf-stats { padding: 0 0 96px; background: linear-gradient(180deg, #000 0%, var(--pf-ink) 60%, var(--pf-navy) 100%); }
 .pf-stats ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--pf-hair); }
 .pf-stats li { padding: 34px 28px 0 0; }
 .pf-stats li + li { padding-left: 28px; border-left: 1px solid var(--pf-hair); }
-.pf-stat-label { font-size: 12px; letter-spacing: .24em; color: var(--pf-glow); font-weight: 700; }
+.pf-stat-label { font-size: 14px; color: var(--pf-glow); font-weight: 700; }
 .pf-stats strong { display: flex; align-items: baseline; gap: 6px; margin: 10px 0 12px; font-weight: 400; }
-.pf-stats .pf-num { font-family: var(--pf-serif); font-size: clamp(52px, 6.6vw, 88px); line-height: 1; letter-spacing: -.02em; color: #fff; }
+.pf-stats .pf-num { font-weight: 800; font-size: clamp(48px, 6vw, 80px); line-height: 1; letter-spacing: -.05em; color: #fff; }
 .pf-stats .pf-unit { font-size: clamp(18px, 2vw, 24px); font-weight: 700; color: var(--pf-on-dark); }
 .pf-stats p { margin: 0; font-size: 14.5px; line-height: 1.65; color: var(--pf-on-dark-muted); max-width: 300px; }
 @media (max-width: 760px) {
@@ -80,7 +78,7 @@
 
 /* ---------- 밝은 띠 공통 ---------- */
 .pf-light { background: linear-gradient(180deg, var(--bg) 0%, var(--pf-light-tint) 100%); color: var(--text); }
-.pf-eyebrow { margin: 0 0 12px; font-size: 12px; font-weight: 800; letter-spacing: .28em; text-transform: uppercase; color: var(--accent); }
+.pf-eyebrow { margin: 0 0 12px; font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
 .pf-h2 { margin: 0; font-size: clamp(28px, 4vw, 44px); line-height: 1.25; letter-spacing: -.04em; font-weight: 800; }
 .pf-h2-lead { margin: 14px 0 0; color: var(--muted); font-size: 17px; max-width: 640px; }
 
@@ -88,11 +86,9 @@
 .pf-how { padding: 104px 0 96px; }
 .pf-motto { margin: 36px 0 0; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 40px; align-items: center; }
 .pf-motto-word {
-  margin: 0; font-family: var(--pf-serif); font-size: clamp(48px, 7vw, 96px); line-height: 1; letter-spacing: -.03em; color: var(--muted);
+  margin: 0; font-weight: 800; font-size: clamp(44px, 6.4vw, 84px); line-height: 1; letter-spacing: -.05em; color: var(--text);
 }
-.pf-motto-word span:first-child { font-style: italic; background: linear-gradient(120deg, var(--pf-ink), var(--pf-blue) 70%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-:root[data-theme="dark"] .pf-motto-word span:first-child { background-image: linear-gradient(120deg, #fff, var(--pf-glow)); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pf-motto-word span:first-child { background-image: linear-gradient(120deg, #fff, var(--pf-glow)); } }
+.pf-motto-word span:first-child { color: var(--accent); }
 .pf-motto p:last-child { margin: 0; color: var(--muted); font-size: 17px; line-height: 1.85; }
 @media (max-width: 860px) { .pf-motto { grid-template-columns: 1fr; gap: 16px; } }
 .pf-principles { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
@@ -100,12 +96,11 @@
   position: relative; padding: 30px 28px 30px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line);
   box-shadow: var(--shadow); overflow: hidden;
 }
-.pf-principles li::before {
-  content: ""; position: absolute; inset: 0 0 auto 0; height: 4px;
-  background: linear-gradient(90deg, var(--pf-ink), var(--pf-blue) 55%, var(--pf-glow));
+.pf-principle-no {
+  display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 10px;
+  background: var(--accent); color: var(--on-accent); font-size: 14px; font-weight: 800;
 }
-.pf-principle-no { font-family: var(--pf-serif); font-size: 44px; line-height: 1; color: var(--accent); }
-.pf-principles h3 { margin: 22px 0 10px; font-size: 19px; line-height: 1.45; letter-spacing: -.02em; font-weight: 800; }
+.pf-principles h3 { margin: 20px 0 10px; font-size: 19px; line-height: 1.45; letter-spacing: -.02em; font-weight: 800; }
 .pf-principles p { margin: 0; color: var(--muted); font-size: 15.5px; line-height: 1.75; }
 @media (max-width: 860px) { .pf-principles { grid-template-columns: 1fr; } }
 
@@ -127,12 +122,7 @@
 /* ---------- 케이스 커버 ---------- */
 .pf-cover { padding: 120px 0 84px; scroll-margin-top: 120px; }
 .pf-cover .wrap { position: relative; }
-.pf-cover-no {
-  position: absolute; right: 20px; top: -40px; z-index: -1;
-  font-family: var(--pf-serif); font-size: clamp(120px, 22vw, 300px); line-height: 1; letter-spacing: -.04em;
-  color: transparent; -webkit-text-stroke: 1px rgba(226, 233, 255, .3); text-transform: uppercase;
-}
-.pf-cover-title { margin: 44px 0 0; max-width: 820px; font-size: clamp(32px, 5.4vw, 64px); line-height: 1.18; letter-spacing: -.045em; font-weight: 800; }
+.pf-cover-title { margin: 28px 0 0; max-width: 820px; font-size: clamp(32px, 5.4vw, 64px); line-height: 1.18; letter-spacing: -.045em; font-weight: 800; }
 .pf-cover-lead {
   margin: 22px 0 0; max-width: 720px; font-size: clamp(17px, 1.9vw, 21px); line-height: 1.65; font-weight: 600;
   color: #cfdcff;
@@ -155,9 +145,11 @@
 .pf-row { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 40px; padding: 44px 0; border-top: 1px solid var(--line); }
 .pf-row:first-child { border-top: 0; }
 .pf-row-label {
-  margin: 0; position: sticky; top: 128px; align-self: start;
-  font-family: var(--pf-serif); font-style: italic; font-weight: 400; font-size: 30px; line-height: 1.15; letter-spacing: -.01em; color: var(--accent);
+  margin: 0; position: sticky; top: 128px; align-self: start; padding-top: 4px;
+  font-size: 15px; font-weight: 800; line-height: 1.4; letter-spacing: .06em; text-transform: uppercase; color: var(--accent);
+  display: flex; align-items: center; gap: 10px;
 }
+.pf-row-label::before { content: ""; width: 16px; height: 2px; background: currentColor; flex: none; }
 .pf-row-body { max-width: 760px; font-size: 17px; line-height: 1.85; }
 .pf-row-body > p { margin: 0 0 18px; }
 .pf-row-body > p:last-child { margin-bottom: 0; }
@@ -167,13 +159,12 @@
 .pf-row-body strong { font-weight: 800; }
 @media (max-width: 860px) {
   .pf-row { grid-template-columns: 1fr; gap: 14px; padding: 34px 0; }
-  .pf-row-label { position: static; font-size: 26px; }
+  .pf-row-label { position: static; }
 }
 
 .pf-sub { font-size: 20px !important; font-weight: 800; letter-spacing: -.02em; margin-bottom: 18px !important; }
 .pf-concept {
-  margin: 0 0 12px !important; font-size: clamp(26px, 3.4vw, 36px); font-weight: 800; letter-spacing: -.04em; line-height: 1.3;
-  background: linear-gradient(90deg, var(--text), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent;
+  margin: 0 0 12px !important; font-size: clamp(26px, 3.4vw, 36px); font-weight: 800; letter-spacing: -.04em; line-height: 1.3; color: var(--accent);
 }
 .pf-learning {
   position: relative; padding: 26px 28px 26px 30px; border-radius: 18px; font-size: 17.5px;
@@ -202,7 +193,7 @@
   display: flex; flex-direction: column; gap: 8px;
 }
 .pf-metrics strong { display: flex; align-items: baseline; gap: 4px; font-weight: 400; flex-wrap: wrap; }
-.pf-metrics .pf-num { font-family: var(--pf-serif); font-size: clamp(34px, 3.6vw, 44px); line-height: 1; color: #fff; letter-spacing: -.02em; }
+.pf-metrics .pf-num { font-weight: 800; font-size: clamp(32px, 3.4vw, 40px); line-height: 1; color: #fff; letter-spacing: -.045em; }
 .pf-metrics .pf-unit { font-size: 15px; font-weight: 700; color: var(--pf-on-dark); }
 .pf-metrics li > span { font-size: 14px; line-height: 1.6; color: var(--pf-on-dark-muted); }
 
@@ -259,7 +250,7 @@
 .pf-events h4 { margin: 0; font-size: 17px; font-weight: 800; letter-spacing: -.02em; }
 .pf-events p { margin: 4px 0 16px; font-size: 14px; color: var(--muted); }
 .pf-events div { display: flex; gap: 22px; font-size: 13.5px; color: var(--muted); }
-.pf-events b { font-family: var(--pf-serif); font-weight: 400; font-size: 34px; color: var(--accent); margin-right: 2px; }
+.pf-events b { font-weight: 800; letter-spacing: -.04em; font-size: 32px; color: var(--accent); margin-right: 2px; }
 @media (max-width: 600px) { .pf-events { grid-template-columns: 1fr; } }
 
 /* ---------- 사진 자리 ---------- */
@@ -276,7 +267,7 @@
   color: var(--muted);
 }
 .pf-ph--dark { border: 1.5px dashed var(--pf-hair); background: rgba(255, 255, 255, .03); color: var(--pf-on-dark-muted); }
-.pf-ph-tag { font-size: 11px; font-weight: 800; letter-spacing: .32em; color: var(--accent); }
+.pf-ph-tag { font-size: 11px; font-weight: 800; letter-spacing: .14em; color: var(--accent); }
 .pf-ph-label { font-size: 14px; font-weight: 600; line-height: 1.5; max-width: 260px; }
 .pf-gallery { display: grid; gap: 12px; margin: 4px 0 24px; }
 .pf-gallery .pf-ph { margin: 0; }
@@ -323,11 +314,11 @@
 .pf-more { padding: 104px 0 104px; border-top: 1px solid var(--line); }
 .pf-timeline { list-style: none; margin: 44px 0 0; padding: 0; border-top: 1px solid var(--text); }
 .pf-timeline li { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 40px; padding: 26px 0; border-bottom: 1px solid var(--line); }
-.pf-when { font-family: var(--pf-serif); font-style: italic; font-size: 19px; color: var(--accent); padding-top: 2px; }
+.pf-when { font-size: 15px; font-weight: 700; color: var(--accent); padding-top: 3px; font-variant-numeric: tabular-nums; }
 .pf-timeline h3 { margin: 0 0 4px; font-size: 19px; font-weight: 800; letter-spacing: -.02em; }
 .pf-timeline p { margin: 0; color: var(--muted); font-size: 15.5px; }
 @media (max-width: 760px) { .pf-timeline li { grid-template-columns: 1fr; gap: 6px; } }
-.pf-tools-title { margin: 64px 0 18px; font-family: var(--pf-serif); font-style: italic; font-weight: 400; font-size: 30px; color: var(--accent); }
+.pf-tools-title { margin: 64px 0 18px; font-size: 24px; font-weight: 800; letter-spacing: -.03em; color: var(--text); }
 .pf-tools { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .pf-tools > div { padding: 22px 24px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); }
 .pf-tools p { margin: 0 0 12px; font-size: 12px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
@@ -342,13 +333,12 @@
 .pf-contact .pf-kicker { flex-direction: row-reverse; }
 .pf-contact-title { margin: 40px 0 0; font-weight: 400; }
 .pf-contact-title > span:first-child {
-  display: block; font-family: var(--pf-serif); font-size: clamp(56px, 10vw, 136px); line-height: .95; letter-spacing: -.02em;
-  background: linear-gradient(180deg, #fff 30%, #b9cbff); -webkit-background-clip: text; background-clip: text; color: transparent;
+  display: block; font-weight: 800; font-size: clamp(52px, 9vw, 120px); line-height: 1; letter-spacing: -.055em; color: #fff;
 }
 .pf-contact-lead { margin: 18px 0 0; color: var(--pf-on-dark-muted); font-size: 17px; }
 .pf-contact-list { margin: 48px 0 0; width: min(100%, 520px); border-top: 1px solid var(--pf-hair); text-align: left; }
 .pf-contact-list div { display: grid; grid-template-columns: 110px 1fr; padding: 16px 0; border-bottom: 1px solid var(--pf-hair); }
-.pf-contact-list dt { font-size: 12px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--pf-on-dark-muted); align-self: center; }
+.pf-contact-list dt { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--pf-on-dark-muted); align-self: center; }
 .pf-contact-list dd { margin: 0; font-size: 17px; font-weight: 600; overflow-wrap: anywhere; }
 .pf-contact-list a { text-decoration: none; }
 .pf-contact-list a:hover { text-decoration: underline; }
@@ -367,7 +357,6 @@
   .pf-hero::before { width: 620px; height: 620px; right: -360px; top: -420px; }
   .pf-hero-foot i { height: 64px; }
   .pf-cover { padding: 88px 0 60px; }
-  .pf-cover-no { top: -24px; }
   .pf-body { padding: 48px 0 72px; }
   .pf-how, .pf-more { padding: 72px 0; }
   .pf-common { padding: 26px 22px; }

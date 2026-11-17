@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import type { CSSProperties, ReactNode } from 'react';
-import { Bodoni_Moda } from 'next/font/google';
 import Shell from '@/components/Shell';
 import JsonLd from '@/components/JsonLd';
 import { OG_BASE, SITE, abs } from '@/lib/site';
@@ -10,8 +9,6 @@ import './portfolio.css';
 // 면접 대비 메모·회사별 변형 가이드·남은 할 일처럼 제출본에 넣지 않는 부분은 옮기지 않았다.
 // 사진 자리는 <Ph> 로 표시한다. 실제 이미지를 넣을 때는 <Ph> 를 <figure className="pf-figure"><img .../></figure> 로 바꾼다.
 // 연락처는 사용자가 공개를 요청한 것만 쓴다 (CLAUDE.md)
-
-const display = Bodoni_Moda({ subsets: ['latin'], style: ['normal', 'italic'], variable: '--pf-display', display: 'swap' });
 
 const title = `포트폴리오 | 콘텐츠 마케터 심서연`;
 const description = '타깃을 직접 파고들어 진짜 결정권자를 찾고, 공유하고 싶어지는 콘텐츠로 구매까지 연결하는 콘텐츠 마케터 심서연의 포트폴리오입니다. 광고비 0원 굿즈 완판, 학원 채널 전략, 스포츠센터 SNS 운영 사례를 담았습니다.';
@@ -62,12 +59,11 @@ function Metrics({ items }: { items: { v: string; u?: string; t: string }[] }) {
   );
 }
 
-function Cover({ no, id, kicker, title, lead, meta, glow }: { no: string; id: string; kicker: string; title: ReactNode; lead: string; meta: string[]; glow: 'a' | 'b' | 'c' | 'd' | 'e' }) {
+function Cover({ id, kicker, title, lead, meta, glow }: { no?: string; id: string; kicker: string; title: ReactNode; lead: string; meta: string[]; glow: 'a' | 'b' | 'c' | 'd' | 'e' }) {
   return (
     <header className={`pf-cover pf-dark pf-glow-${glow}`} id={id}>
       <div className="wrap">
         <p className="pf-cover-kicker"><span>{kicker}</span><i aria-hidden="true" /></p>
-        <div className="pf-cover-no" aria-hidden="true">{no}</div>
         <h2 className="pf-cover-title">{title}</h2>
         <p className="pf-cover-lead">{lead}</p>
         {meta.length > 0 && <ul className="pf-cover-meta">{meta.map((m) => <li key={m}>{m}</li>)}</ul>}
@@ -131,7 +127,7 @@ export default function AboutPage() {
         },
       }} />
 
-      <main id="main" className={`pf ${display.variable}`}>
+      <main id="main" className="pf">
 
         {/* ===== 표지 ===== */}
         <section className="pf-hero pf-dark" aria-labelledby="pf-hero-title">

@@ -54,14 +54,18 @@ interface CaseProps {
   summary: string;
   tags: string[];
   role: string;
+  contrib: string;
   image: { label: string; ratio?: string };
   children: ReactNode;
 }
 
-function CaseCard({ id, no, meta, title, summary, tags, role, image, children }: CaseProps) {
+function CaseCard({ id, no, meta, title, summary, tags, role, contrib, image, children }: CaseProps) {
   return (
     <article className="pf-card" id={id} aria-labelledby={`${id}-title`}>
-      <p className="pf-card-meta"><b>CASE {no}</b> · {meta}</p>
+      <div className="pf-card-meta">
+        <p><b>CASE {no}</b> · {meta}</p>
+        <p className="pf-contrib">기여도 <b>{contrib}</b></p>
+      </div>
       <div className="pf-card-top">
         <Ph label={image.label} ratio={image.ratio} />
         <div className="pf-card-text">
@@ -120,16 +124,18 @@ export default function AboutPage() {
         {/* 2. Hero */}
         <section className="pf-hero pf-dark" id="top" aria-labelledby="pf-hero-title">
           <div className="wrap">
-            <p className="pf-hero-kicker">CONTENT MARKETER · 심서연</p>
+            <p className="pf-hero-kicker">CONTENT MARKETER PORTFOLIO</p>
             <h1 id="pf-hero-title" className="pf-hero-title">
-              <span data-hide="db univ">진짜 결정권자를 찾아,<br />공유되는 콘텐츠로 구매까지 연결합니다.</span>
-              <span data-show="db">어려운 정보를 체감 언어로 바꿔,<br />행동까지 연결합니다.</span>
-              <span data-show="univ">대학생만 아는 언어로,<br />온라인과 현장을 함께 움직입니다.</span>
+              <span className="pf-hero-word">SPARK:CLING</span>
+              <span className="pf-hero-mean"><b>SPARK</b> 번뜩이는 아이디어로 시작하고, <b>CLING</b> 성과가 날 때까지 끝까지 붙잡습니다.</span>
+              <span className="pf-hero-sub" data-hide="db univ">진짜 결정권자를 찾아,<br />공유되는 콘텐츠로 구매까지 연결하는 마케터, 심서연입니다.</span>
+              <span className="pf-hero-sub" data-show="db">어려운 정보를 체감 언어로 바꿔,<br />행동까지 연결하는 마케터, 심서연입니다.</span>
+              <span className="pf-hero-sub" data-show="univ">대학생만 아는 언어로,<br />온라인과 현장을 함께 움직이는 마케터, 심서연입니다.</span>
             </h1>
 
             <ul className="pf-stats" aria-label="핵심 성과">
-              <li className="pf-stat-sales"><a href="#case-1"><strong>1,500<small>만 원</small></strong><span>광고비 0원 굿즈 매출</span></a></li>
-              <li className="pf-stat-45"><a href="#case-2"><strong>45<small>%</small></strong><span>신규 등록 중 SNS 유입</span></a></li>
+              <li className="pf-stat-sales"><a href="#case-1"><strong>1,500<small>만 원</small></strong><span>유료 광고 0원 굿즈 매출</span></a></li>
+              <li className="pf-stat-45"><a href="#case-2"><strong>45<small>%</small></strong><span>신규 등록생 SNS 유입 비중</span></a></li>
               <li className="pf-stat-84" data-hide="db univ"><a href="#case-2"><strong>84<small>%↑</small></strong><span>강사 계정 팔로워 성장률</span></a></li>
               <li className="pf-stat-reels" data-show="db"><a href="#case-2"><strong>5.6<small>만 회</small></strong><span>최고 조회수 릴스</span></a></li>
               <li className="pf-stat-events" data-show="univ"><a href="#case-3"><strong>450<small>명</small></strong><span>직접 기획한 행사 참여</span></a></li>
@@ -146,28 +152,27 @@ export default function AboutPage() {
         <section className="pf-section pf-light" aria-labelledby="pf-how-title">
           <div className="wrap">
             <div className="pf-head">
-              <p className="pf-eyebrow">How I Work</p>
-              <h2 id="pf-how-title">이렇게 일합니다</h2>
-              <p className="pf-motto"><b>spark:cling</b> 아이디어(spark)에서 시작해, 성과가 날 때까지 붙잡습니다(cling).</p>
+              <p className="pf-eyebrow">Working Principles</p>
+              <h2 id="pf-how-title">세 가지 원칙으로 일합니다</h2>
             </div>
             <ol className="pf-steps">
               <li>
                 <span className="pf-step-no">01</span>
-                <h3>진짜 타깃을 찾는다</h3>
-                <p>돈을 내는 사람과 고르는 사람은 다를 수 있다</p>
-                <a href="#case-2">Case 02 →</a>
+                <h3>타깃 검증</h3>
+                <p>결제자와 결정자를 구분해, 실제로 선택하는 사람을 조사로 확인합니다.</p>
+                <span className="pf-step-links"><a href="#case-2">Case 02 →</a></span>
               </li>
               <li>
                 <span className="pf-step-no">02</span>
-                <h3>그들만 아는 이야기를 찾는다</h3>
-                <p>공유된 경험에서 출발하면 광고비 없이도 퍼진다</p>
-                <a href="#case-1">Case 01 →</a>
+                <h3>인사이트 기반 콘셉트</h3>
+                <p>타깃만 공유하는 경험에서 콘셉트를 도출해, 자발적인 공유를 이끕니다.</p>
+                <span className="pf-step-links"><a href="#case-1">Case 01 →</a></span>
               </li>
               <li>
                 <span className="pf-step-no">03</span>
-                <h3>반응을 보고 바로 고친다</h3>
-                <p>계획대로 안 되면 당일에 접점을 바꾼다</p>
-                <a href="#case-3">Case 03 →</a>
+                <h3>데이터 기반 기민한 대응</h3>
+                <p>사전에 정한 지표로 반응을 읽고, 준비해 둔 대안으로 빠르게 전환합니다.</p>
+                <span className="pf-step-links"><a href="#case-1">Case 01</a> · <a href="#case-3">Case 03 →</a></span>
               </li>
             </ol>
           </div>
@@ -183,17 +188,18 @@ export default function AboutPage() {
             <div className="pf-cases">
               <CaseCard
                 id="case-1" no="01" meta="대학 축제 · 2026"
-                title="3,000명의 '확정하기' 버튼"
-                summary="충남대생만 아는 수강신청을 굿즈로 만들어 광고비 없이 이틀 만에 완판"
-                tags={['매출 1,500만 원', '3,000개 완판', '광고비 0원']}
+                title="3,000명을 확정하게 만들다"
+                summary="학내 구성원만 공유하는 IP인 수강신청을 굿즈로 기획해, 유료 광고 없이 2일 만에 3,000개 전량 판매"
+                tags={['매출 1,500만 원', '판매율 100%', '유료 광고비 0원']}
                 role="콘셉트 제안 · 런칭 카피 · 판매 둔화 시 전략 전환"
+                contrib="90%"
                 image={{ label: '클리커와 수강신청 화면 나란히' }}
               >
                 <dl className="pf-detail">
-                  <Detail k="문제와 인사이트">이틀에 3,000개를 팔아야 했지만 시중 클리커는 뻔했습니다. 방문객 90% 이상이 재학생이라, 그들만 아는 고통인 수강신청 &lsquo;확정하기&rsquo; 버튼을 굿즈로 옮겼습니다.</Detail>
-                  <Detail k="실행">&ldquo;딸-깍, 무선 수강신청의 시대는 왔다&rdquo;로 인스타그램과 학과 단톡방에 런칭. 둘째 날 판매가 둔화되자 현장 체험과 밈 카드뉴스 연속 발행으로 전환했습니다.</Detail>
-                  <Detail k="결과">3,000개 완판, 런칭 게시물 조회수 1.5만 회(팔로워 대비 136%), &ldquo;또 팔아 달라&rdquo;는 설문 응답.</Detail>
-                  <Detail k="배운 점">사람들은 물건이 아니라 &ldquo;우리끼리 아는 이야기&rdquo;를 산다.</Detail>
+                  <Detail k="문제와 인사이트">2일간 3,000개 판매가 목표였으나, 시중 클리커는 디자인 차별점이 없었습니다. 방문객의 90% 이상이 재학생이라는 점에 주목해, 학내 구성원만 공유하는 IP인 수강신청 사이트의 <strong>확정하기</strong> 버튼을 굿즈로 기획했습니다.</Detail>
+                  <Detail k="실행">런칭 카피 <strong>딸-깍, 무선 수강신청의 시대는 왔다</strong>로 인스타그램과 학과 단톡방에 동시 런칭했습니다. 2일차 판매 속도가 둔화되자 현장 체험 접점과 밈 카드뉴스 연속 발행으로 전환했습니다.</Detail>
+                  <Detail k="결과">판매율 100%(3,000개), 매출 1,500만 원, 유료 광고비 0원. 런칭 게시물은 팔로워 수의 136%인 1.5만 회 도달했고, 만족도 조사에서는 <strong>재판매 요청</strong>이 나왔습니다.</Detail>
+                  <Detail k="배운 점">사람들은 물건보다 <strong>우리끼리 아는 이야기</strong>에 지갑을 연다는 것을 배웠습니다. 실무에서는 기획 초기에 타깃만 아는 순간과 단어를 먼저 모아 콘셉트의 재료로 쓰고, 런칭 첫날의 판매와 반응을 기준선으로 잡아 둔화되면 그날 바로 접점과 콘텐츠를 바꾸겠습니다.</Detail>
                 </dl>
                 <div className="pf-strip">
                   <Ph label="클리커 실물 사진" ratio="4 / 5" />
@@ -206,9 +212,10 @@ export default function AboutPage() {
               <CaseCard
                 id="case-2" no="02" meta="학원 마케팅 · 2024.01~현재"
                 title="학원을 고르는 건 학부모가 아니었다"
-                summary="학생이 학원을 고른다는 걸 찾아내 강사 계정을 키우고 입소문을 만듦"
+                summary="실제 결정권자가 학생임을 발견하고, 강사 퍼스널 브랜딩으로 추천 유입 구조를 설계"
                 tags={['재원생 20%↑', '신규 45% SNS 유입', '릴스 5.6만']}
                 role="타깃 조사 · 채널 전략 · 릴스 기획·제작"
+                contrib="90%"
                 image={{ label: '5.6만 회 릴스 캡처' }}
               >
                 <dl className="pf-detail">
@@ -224,7 +231,7 @@ export default function AboutPage() {
                     </table>
                   </Detail>
                   <Detail k="결과">재원생 100→120명, 신규 20명 중 9명이 강사 인스타로 유입, 팔로워 84%↑, 정규직 전환 제안.</Detail>
-                  <Detail k="배운 점">친구에게 보여 주고 싶은 콘텐츠가 입소문의 재료가 된다.</Detail>
+                  <Detail k="배운 점">돈을 내는 사람과 고르는 사람은 다를 수 있고, 친구에게 보여 주고 싶은 콘텐츠가 입소문의 재료가 된다는 것을 배웠습니다. 실무에서도 결제자, 결정자, 추천자를 나눠 채널과 메시지를 따로 설계하고, 신규 고객의 유입 경로를 꼭 확인해 어떤 콘텐츠가 실제 전환을 만들었는지 따져 보겠습니다.</Detail>
                 </dl>
                 <div className="pf-strip">
                   <Ph label="강사 계정 프로필" ratio="9 / 16" />
@@ -236,9 +243,10 @@ export default function AboutPage() {
               <CaseCard
                 id="case-3" no="03" meta="스포츠센터 · 2025.01~현재"
                 title="고객이 머무는 구조를 만들다"
-                summary="비어 있던 문의 창구를 설계하고 콘텐츠와 행사로 계정을 2배 키움"
+                summary="부재했던 고객 문의 접점을 체계화하고, 콘텐츠와 오프라인 행사로 공식 계정을 2배 성장"
                 tags={['컴플레인 0건', '팔로워 4,150', '행사 만족도 4.9']}
                 role="CS 체계 설계 · SNS 총괄 · 행사 기획"
+                contrib="100%"
                 image={{ label: 'Before/After 문의 창구' }}
               >
                 <dl className="pf-detail">
@@ -258,7 +266,7 @@ export default function AboutPage() {
                     </ul>
                   </Detail>
                   <Detail k="결과">문의 컴플레인 0건, 팔로워 2,000명대→4,150명, 밈 릴스 7.1만 회, 수영 규칙 영상 1.1만 회.</Detail>
-                  <Detail k="배운 점">콘텐츠의 성과는 문의·참여·재방문까지 이어질 때 완성된다.</Detail>
+                  <Detail k="배운 점">콘텐츠의 성과는 문의, 참여, 재방문까지 이어질 때 완성된다는 것을 배웠습니다. 실무에서는 캠페인을 열기 전에 문의 창구와 FAQ부터 준비하고, 쌓인 반복 문의를 다음 콘텐츠의 주제로 되돌려 쓰겠습니다.</Detail>
                 </dl>
                 <div className="pf-strip">
                   <Ph label="카카오톡 채널 화면" ratio="4 / 5" />
@@ -283,24 +291,23 @@ export default function AboutPage() {
               <article className="pf-tile pf-lab-cass">
                 <Ph label="알코올 함유량 비교 장표" ratio="16 / 10" />
                 <div className="pf-tile-body">
-                  <p className="pf-tile-meta">오비맥주 공모전 출품 · 4인 팀</p>
+                  <p className="pf-tile-meta">오비맥주 공모전 출품 · 4인 팀<span className="pf-contrib">기여도 <b>40%</b></span></p>
                   <h3>카스 0.0 「ㅋㅅㅇㅇ」</h3>
-                  <p>숫자 &ldquo;0.05%&rdquo;를 간장·고추장과 비교해 체감 언어로 번역</p>
-                  <p className="pf-tile-insight"><span>인사이트</span>거부감은 &ldquo;알코올이 들어 있다&rdquo;는 인지에서 온다 (자체 설문)</p>
+                  <p>알코올 함유량 <strong>0.05%</strong>를 간장·고추장과 비교해 체감 언어로 번역</p>
+                  <p className="pf-tile-insight"><span>인사이트</span>거부감은 <strong>알코올이 들어 있다는 인지</strong>에서 비롯됨 (자체 설문)</p>
                 </div>
               </article>
               <article className="pf-tile pf-lab-sajik">
                 <Ph label="사!직이네 메인 보드" ratio="16 / 10" />
                 <div className="pf-tile-body">
-                  <p className="pf-tile-meta">대홍기획 공모전 출품</p>
+                  <p className="pf-tile-meta">대홍기획 공모전 출품<span className="pf-contrib">기여도 <b>30%</b></span></p>
                   <h3>롯데 자이언츠 「사!직이네」</h3>
-                  <p>모래(沙)와 부산 방언으로 야구장을 부산의 공간으로</p>
-                  <p className="pf-tile-insight"><span>인사이트</span>2030 여성 팬은 현장 경험을 산다</p>
+                  <p>모래(沙)와 부산 방언으로 야구장을 부산의 공간으로 재해석</p>
+                  <p className="pf-tile-insight"><span>인사이트</span>2030 여성 팬은 경기보다 현장 경험을 소비함</p>
                   <p className="pf-tile-insight" data-show="univ"><span>제작</span>어도비 생성형 채우기(AI)로 공간 시안 이미지 제작</p>
                 </div>
               </article>
             </div>
-            <p className="pf-note">두 기획 모두 Case 01처럼, 타깃이 이미 가진 경험에서 출발했습니다.</p>
           </div>
         </section>
 
@@ -309,14 +316,14 @@ export default function AboutPage() {
           <div className="wrap">
             <div className="pf-head">
               <p className="pf-eyebrow">Side Projects</p>
-              <h2 id="pf-side-title">일 밖에서도 실험합니다</h2>
+              <h2 id="pf-side-title">실험은 계속됩니다</h2>
             </div>
             <div className="pf-duo pf-side">
               <article className="pf-tile pf-tile-sm pf-side-ref">
                 <Ph label="Ref 사이트 화면" ratio="16 / 9" />
                 <div className="pf-tile-body">
-                  <h3>Ref</h3>
-                  <p>매일 트렌드를 수집해 SEO 콘텐츠로 만드는 1인 파이프라인. Claude Code 스킬 11개를 직접 만들어 운영 중.</p>
+                  <h3>Ref · AI로 설계한 콘텐츠 마케팅 파이프라인</h3>
+                  <p>직접 만든 Claude Code 스킬이 매일 아침 트렌드와 SEO 이슈를 슬랙으로 브리핑하고, 이를 토대로 SEO 콘텐츠를 기획·발행합니다. 트렌드 수집, 블로그 작성, 성과 분석, 주간 리포트까지 업무 단계별 스킬 11개를 AI로 직접 설계해 운영하고 있습니다.</p>
                   <a className="pf-link" href="https://marketing-ref.vercel.app/">사이트 보기 ↗</a>
                 </div>
               </article>
@@ -348,7 +355,7 @@ export default function AboutPage() {
               <p className="pf-eyebrow">Tools</p>
               <h2 className="pf-h2-sm">다루는 툴</h2>
               <ul className="pf-chips">
-                {['Photoshop', 'Illustrator', 'Premiere Pro', 'After Effects', 'Figma', 'Notion', 'Claude Code'].map((t) => <li key={t}>{t}</li>)}
+                {['Photoshop', 'Illustrator', 'Premiere Pro', 'Figma', 'Notion', 'Claude Code'].map((t) => <li key={t}>{t}</li>)}
               </ul>
             </div>
           </div>
